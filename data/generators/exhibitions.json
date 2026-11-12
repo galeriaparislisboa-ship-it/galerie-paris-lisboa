@@ -1,9 +1,42 @@
 {
-  "updated_at": "2026-11-12T17:11:45.963455+00:00",
-  "sources_checked": 11,
-  "newly_discovered": 0,
+  "updated_at": "2026-11-12T17:38:36.834636+00:00",
+  "sources_checked": 125,
+  "newly_discovered": 1,
   "errors": [
-    "Museu do Design: 403 Client Error: Forbidden for url: https://mude.pt/"
+    "MUDE: 403 Client Error: Forbidden for url: https://mude.pt/",
+    "Museu Nacional de Arte Antiga: HTTPSConnectionPool(host='www.museudearteantiga.pt', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, \"[SSL: CERTIFICATE_VERIFY_FAILED] c",
+    "Museu Nacional do Traje: HTTPSConnectionPool(host='www.museudotraje.gov.pt', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred",
+    "Museu Nacional do Teatro e da Dança: HTTPSConnectionPool(host='www.museudoteatroedanca.gov.pt', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF o",
+    "Galeria Graça Brandão: 403 Client Error: Forbidden for url: https://www.galeriagracabrandao.com/",
+    "Galeria 111: 403 Client Error: Forbidden for url: https://www.111.pt/",
+    "Galeria Foco: HTTPSConnectionPool(host='www.focogallery.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.focogallery.com', port=443): F",
+    "Galeria Nuno Centeno: 403 Client Error: Forbidden for url: https://www.nunocenteno.com/",
+    "Espaço Mira: HTTPSConnectionPool(host='www.miraonline.org', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.miraonline.org', port=443): Fai",
+    "MIRA FORUM: HTTPSConnectionPool(host='www.miraonline.org', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.miraonline.org', port=443): Fai",
+    "Museu de Viseu / Grão Vasco: HTTPSConnectionPool(host='www.museugraovasco.gov.pt', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurr",
+    "Museu Nacional Machado de Castro: HTTPSConnectionPool(host='www.museumachadocastro.gov.pt', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF oc",
+    "Centro de Artes Visuais: HTTPSConnectionPool(host='www.centrodeartesvisuais.pt', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.centrodeartesvisuais.p",
+    "Convento São Francisco: HTTPSConnectionPool(host='www.conventosaofrancisco.pt', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.conventosaofrancisco.p",
+    "Museu da Ciência da Universidade de Coimbra: HTTPSConnectionPool(host='www.museudaciencia.org', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] cer",
+    "Museu José Malhoa: HTTPSConnectionPool(host='www.museujosemalhoa.gov.pt', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.museujosemalhoa.gov.pt'",
+    "Museu da Cerâmica: HTTPSConnectionPool(host='www.museudaceramica.gov.pt', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.museudaceramica.gov.pt'",
+    "Museu de Santarém: HTTPSConnectionPool(host='www.cm-santarem.pt', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.cm-santarem.pt', port=443) at 0",
+    "Museu de Oeiras: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",
+    "Centro de Arte Manuel de Brito: 513 Server Error:  for url: https://www.oeiras.pt/",
+    "Museu de Évora: HTTPSConnectionPool(host='www.museudevora.gov.pt', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.museudevora.gov.pt', port=4",
+    "Fundação Eugénio de Almeida: HTTPSConnectionPool(host='www.fundacaoeugeniodealmeida.pt', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, \"[SSL: CERTIFICATE_VERIFY_FA",
+    "Centro de Arte e Cultura FEA: HTTPSConnectionPool(host='www.fundacaoeugeniodealmeida.pt', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, \"[SSL: CERTIFICATE_VERIFY_FA",
+    "Museu de Faro: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))",
+    "Museu Municipal de Tavira: HTTPSConnectionPool(host='museumunicipaldetavira.cm-tavira.pt', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLError(1, '[SSL: TLSV1_UNRECOGNIZED_NAME] tlsv1 un",
+    "Museu de Loulé: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))",
+    "Museu de Arte Sacra do Funchal: 403 Client Error: Forbidden for url: https://www.museuartesacrafunchal.org/",
+    "Museu de Arte Contemporânea da Madeira: HTTPSConnectionPool(host='www.mudas.pt', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.mudas.pt', port=443): Failed to resol",
+    "MUDAS Museu de Arte Contemporânea: HTTPSConnectionPool(host='www.mudas.pt', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.mudas.pt', port=443): Failed to resol",
+    "Museu da Quinta das Cruzes: HTTPSConnectionPool(host='mqc.madeira.gov.pt', port=443): Read timed out. (read timeout=13)",
+    "Museu Carlos Machado: 403 Client Error: Forbidden for url: https://museucarlosmachado.azores.gov.pt/",
+    "Arquipélago Centro de Artes Contemporâneas: 403 Client Error: Forbidden for url: https://arquipelagocentrodeartes.azores.gov.pt/",
+    "Museu de Angra do Heroísmo: HTTPSConnectionPool(host='museu-angra.azores.gov.pt', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='museu-angra.azores.gov.pt', ",
+    "Museu da Horta: 403 Client Error: Forbidden for url: https://museu-horta.azores.gov.pt/"
   ],
   "events": [
     {
@@ -50,6 +83,16 @@
       "start": "2026-11-14",
       "end": "2027-01-21",
       "url": "https://www.saomamede.com/listagem/exposicoes/tudo-e-deserto-porto"
+    },
+    {
+      "title": "Francisco Tropa  ASSEMBLAGE",
+      "city": "Porto",
+      "category": "Art",
+      "venue": "Galeria Quadrado Azul",
+      "start": "2026-11-14",
+      "end": "2027-01-16",
+      "url": "https://quadradoazul.pt/exposicoes/2026-11-04_FranciscoTropa_Assemblage",
+      "image": "https://pub-fff3ee121cb043e1a6797b188df5c09c.r2.dev/CF127906-1-1600x900.jpg"
     }
   ]
 }
