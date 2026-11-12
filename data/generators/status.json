@@ -1,0 +1,9 @@
+{
+  "project": "Galerie Paris Lisboa",
+  "last_check": "2026-11-12T16:12:36.711797+00:00",
+  "modules": [
+    "design-price-finder",
+    "architecture-studio-finder",
+    "portugal-exhibition-finder"
+  ]
+}
