@@ -1,9 +1,10 @@
 import json
+import re
 import urllib.request
-from pathlib import Path
-from datetime import datetime, timezone, date
+from datetime import date, datetime, timezone
 from html.parser import HTMLParser
-from urllib.parse import urlparse
+from pathlib import Path
+from urllib.parse import urljoin, urlparse
 
 OUTPUT = Path("data/generators/exhibitions.json")
 
@@ -15,220 +16,351 @@ SOURCES = [
     ("Lisboa", "https://www.saomamede.com/listagem/exposicoes"),
 ]
 
-KEYWORDS = (
-    "exposi", "exhibition", "pintura", "painting",
-    "arte", "art", "design", "arquitet",
-    "architect", "fotograf", "photograph"
+EXHIBITION_WORDS = (
+    "exposi", "exhibition", "mostra", "pintura", "painting",
+    "fotografia", "photography", "arquitetura", "architecture",
+    "design", "arte contempor"
 )
 
+LINK_WORDS = ("expos", "exhib", "mostra")
+MAX_LINKS_PER_SOURCE = 15
 
-class JSONLDScripts(HTMLParser):
+
+class PageParser(HTMLParser):
     def __init__(self):
         super().__init__()
-        self.inside = False
-        self.buffer = ""
         self.scripts = []
+        self.in_json = False
+        self.json_buffer = []
+        self.links = []
+        self.link = None
 
     def handle_starttag(self, tag, attrs):
-        attributes = dict(attrs)
-        if tag == "script" and attributes.get("type", "").lower() == "application/ld+json":
-            self.inside = True
-            self.buffer = ""
+        attrs = dict(attrs)
+
+        if (
+            tag == "script"
+            and attrs.get("type", "").lower() == "application/ld+json"
+        ):
+            self.in_json = True
+            self.json_buffer = []
+
+        if tag == "a":
+            self.link = [attrs.get("href", ""), ""]
 
     def handle_data(self, data):
-        if self.inside:
-            self.buffer += data
+        if self.in_json:
+            self.json_buffer.append(data)
+
+        if self.link is not None:
+            self.link[1] += data
 
     def handle_endtag(self, tag):
-        if tag == "script" and self.inside:
-            self.scripts.append(self.buffer)
-            self.inside = False
+        if tag == "script" and self.in_json:
+            self.scripts.append("".join(self.json_buffer))
+            self.in_json = False
+
+        if tag == "a" and self.link is not None:
+            self.links.append(tuple(self.link))
+            self.link = None
 
 
-def extract_nodes(data):
-    if isinstance(data, list):
-        for item in data:
-            yield from extract_nodes(item)
+def fetch(url):
+    request = urllib.request.Request(
+        url,
+        headers={
+            "User-Agent": "Mozilla/5.0 (compatible; GalerieParisLisboa/1.0)"
+        }
+    )
 
-    elif isinstance(data, dict):
-        yield data
+    with urllib.request.urlopen(request, timeout=15) as response:
+        content_type = response.headers.get("Content-Type", "")
 
-        for item in data.get("@graph", []):
-            yield from extract_nodes(item)
+        if "html" not in content_type.lower():
+            return ""
+
+        return response.read(1500000).decode("utf-8", "replace")
 
 
-def text_value(value):
+def nodes(value):
+    if isinstance(value, list):
+        for item in value:
+            yield from nodes(item)
+
+    elif isinstance(value, dict):
+        yield value
+
+        for key in ("@graph", "mainEntity", "itemListElement"):
+            if key in value:
+                yield from nodes(value[key])
+
+        if "item" in value and isinstance(value["item"], dict):
+            yield from nodes(value["item"])
+
+
+def text(value):
     if isinstance(value, dict):
-        return str(value.get("name", ""))
+        return str(value.get("name") or value.get("text") or "")
 
     return str(value or "")
 
 
-def valid_date(value):
+def date_value(value):
+    if isinstance(value, dict):
+        value = value.get("@value", "")
+
+    value = str(value or "")
+    match = re.search(r"\d{4}-\d{2}-\d{2}", value)
+
+    if not match:
+        return None
+
     try:
-        return date.fromisoformat(str(value)[:10]).isoformat()
-    except (ValueError, TypeError):
+        return date.fromisoformat(match.group()).isoformat()
+    except ValueError:
         return None
 
 
-def category(text):
-    text = text.lower()
+def classify(value):
+    value = value.lower()
 
-    if "architect" in text or "arquitet" in text:
+    if "arquitet" in value or "architect" in value:
         return "Architecture"
 
-    if "design" in text:
+    if "design" in value:
         return "Design"
 
-    if "photo" in text or "fotograf" in text:
+    if "fotograf" in value or "photo" in value:
         return "Photography"
 
-    if "paint" in text or "pintura" in text:
+    if "pintura" in value or "paint" in value:
         return "Painting"
 
     return "Art"
 
 
-def fetch_page(url):
-    request = urllib.request.Request(
-        url,
-        headers={
-            "User-Agent": "GalerieParisLisboaExhibitionFinder/1.0"
-        }
-    )
+def extract_events(html, page_url, city, today):
+    parser = PageParser()
+    parser.feed(html)
 
-    with urllib.request.urlopen(request, timeout=15) as response:
-        return response.read(1200000).decode("utf-8", "replace")
+    found = []
+
+    for script in parser.scripts:
+        try:
+            data = json.loads(script)
+        except (ValueError, TypeError):
+            continue
+
+        for item in nodes(data):
+            types = item.get("@type", [])
+
+            if isinstance(types, str):
+                types = [types]
+
+            if not any(
+                str(t).split("/")[-1].lower()
+                in ("event", "exhibitionevent", "visualartsevent")
+                for t in types
+            ):
+                continue
+
+            title = text(item.get("name")).strip()
+            description = text(item.get("description"))
+
+            if not title:
+                continue
+
+            if not any(
+                word in (title + " " + description).lower()
+                for word in EXHIBITION_WORDS
+            ):
+                continue
+
+            start = date_value(item.get("startDate"))
+            end = date_value(item.get("endDate"))
+
+            if not start or not end:
+                continue
+
+            if end < today or end < start:
+                continue
+
+            location = item.get("location", {})
+            venue = text(location).strip()
+
+            if not venue:
+                venue = urlparse(page_url).hostname or "Venue not specified"
+
+            link = item.get("url") or page_url
+
+            if not isinstance(link, str):
+                continue
+
+            link = urljoin(page_url, link)
+
+            if urlparse(link).scheme not in ("http", "https"):
+                continue
+
+            found.append([
+                title,
+                city,
+                classify(title + " " + description),
+                venue,
+                start,
+                end,
+                link
+            ])
+
+    return found, parser.links
 
 
 def main():
     today = date.today().isoformat()
-
-    existing = {"events": []}
+    existing = []
 
     if OUTPUT.exists():
         try:
-            existing = json.loads(OUTPUT.read_text(encoding="utf-8"))
-        except (ValueError, OSError):
+            existing = json.loads(
+                OUTPUT.read_text(encoding="utf-8")
+            ).get("events", [])
+        except (OSError, ValueError, AttributeError):
             pass
 
     exhibitions = {}
 
-    for event in existing.get("events", []):
+    for event in existing:
         if (
             isinstance(event, list)
             and len(event) == 7
-            and valid_date(event[5])
+            and date_value(event[5])
             and event[5] >= today
         ):
-            key = (event[0].lower(), event[3].lower())
+            key = (
+                event[0].casefold(),
+                event[3].casefold()
+            )
             exhibitions[key] = event
 
-    new_count = 0
+    pages_checked = 0
 
-    for city, source_url in SOURCES:
+    for city, root in SOURCES:
         try:
-            html = fetch_page(source_url)
+            html = fetch(root)
 
-            parser = JSONLDScripts()
-            parser.feed(html)
+            events, links = extract_events(
+                html, root, city, today
+            )
 
-            for script in parser.scripts:
-                try:
-                    data = json.loads(script)
-                except (ValueError, TypeError):
+            pages_checked += 1
+
+            for event in events:
+                key = (
+                    event[0].casefold(),
+                    event[3].casefold()
+                )
+                exhibitions[key] = event
+
+            print(
+                "Checked:",
+                root,
+                "| exhibitions:",
+                len(events)
+            )
+
+            candidates = []
+
+            for href, label in links:
+                url = urljoin(root, href)
+
+                if (
+                    urlparse(url).netloc
+                    != urlparse(root).netloc
+                ):
                     continue
 
-                for item in extract_nodes(data):
-                    types = item.get("@type", [])
+                if any(
+                    word in (url + " " + label).lower()
+                    for word in LINK_WORDS
+                ):
+                    if url not in candidates and url != root:
+                        candidates.append(url)
 
-                    if isinstance(types, str):
-                        types = [types]
+            for url in candidates[:MAX_LINKS_PER_SOURCE]:
+                try:
+                    page = fetch(url)
 
-                    if not any(
-                        t in ("Event", "ExhibitionEvent", "VisualArtsEvent")
-                        for t in types
-                    ):
-                        continue
+                    found, _ = extract_events(
+                        page, url, city, today
+                    )
 
-                    title = text_value(item.get("name")).strip()
-                    description = text_value(item.get("description"))
+                    pages_checked += 1
 
-                    searchable = (title + " " + description).lower()
+                    for event in found:
+                        key = (
+                            event[0].casefold(),
+                            event[3].casefold()
+                        )
+                        exhibitions[key] = event
 
-                    if not title:
-                        continue
+                    print(
+                        "Checked detail:",
+                        url,
+                        "| exhibitions:",
+                        len(found)
+                    )
 
-                    if not any(word in searchable for word in KEYWORDS):
-                        continue
-
-                    start = valid_date(item.get("startDate"))
-                    end = valid_date(item.get("endDate"))
-
-                    if not start or not end:
-                        continue
-
-                    if end < today or end < start:
-                        continue
-
-                    location = item.get("location", {})
-                    venue = text_value(location)
-
-                    if not venue:
-                        continue
-
-                    link = item.get("url") or source_url
-
-                    if not isinstance(link, str):
-                        continue
-
-                    if urlparse(link).scheme not in ("http", "https"):
-                        continue
-
-                    event = [
-                        title,
-                        city,
-                        category(searchable),
-                        venue,
-                        start,
-                        end,
-                        link
-                    ]
-
-                    key = (title.lower(), venue.lower())
-
-                    if key not in exhibitions:
-                        new_count += 1
-
-                    exhibitions[key] = event
-
-            print("Checked:", source_url)
+                except Exception as error:
+                    print(
+                        "Detail unavailable:",
+                        url,
+                        str(error)
+                    )
 
         except Exception as error:
-            print("Source unavailable:", source_url, str(error))
+            print(
+                "Source unavailable:",
+                root,
+                str(error)
+            )
 
     results = sorted(
         exhibitions.values(),
         key=lambda event: (event[4], event[0])
     )
 
+    OUTPUT.parent.mkdir(
+        parents=True,
+        exist_ok=True
+    )
+
     data = {
         "project": "Galerie Paris Lisboa",
-        "updated_at": datetime.now(timezone.utc).isoformat(),
+        "updated_at": datetime.now(
+            timezone.utc
+        ).isoformat(),
         "total": len(results),
-        "new_exhibitions": new_count,
+        "pages_checked": pages_checked,
         "events": results
     }
 
-    OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-
     OUTPUT.write_text(
-        json.dumps(data, ensure_ascii=False, indent=2) + "\n",
+        json.dumps(
+            data,
+            ensure_ascii=False,
+            indent=2
+        ) + "\n",
         encoding="utf-8"
     )
 
+    print("Pages checked:", pages_checked)
     print("Total exhibitions:", len(results))
-    print("New exhibitions:", new_count)
+
+    if not results:
+        print(
+            "WARNING: No dated exhibition data found. "
+            "Source-specific parsers needed."
+        )
+
     print("Daily update completed.")
 
 
