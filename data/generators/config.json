@@ -1,0 +1,18 @@
+{
+  "project": "Galerie Paris Lisboa",
+  "update_frequency": "daily",
+  "modules": [
+    {
+      "name": "design-price-finder",
+      "enabled": true
+    },
+    {
+      "name": "architecture-studio-finder",
+      "enabled": true
+    },
+    {
+      "name": "portugal-exhibition-finder",
+      "enabled": true
+    }
+  ]
+}
