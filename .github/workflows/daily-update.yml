@@ -21,36 +21,15 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Update status
-        run: |
-          mkdir -p data/generators
-          python - <<'PY'
-          import json
-          from datetime import datetime, timezone
-          from pathlib import Path
+      - name: Collect dated exhibition metadata
+        run: python scripts/update_exhibitions.py
 
-          status = {
-              "project": "Galerie Paris Lisboa",
-              "last_check": datetime.now(timezone.utc).isoformat(),
-              "modules": [
-                  "design-price-finder",
-                  "architecture-studio-finder",
-                  "portugal-exhibition-finder"
-              ]
-          }
-
-          Path("data/generators/status.json").write_text(
-              json.dumps(status, indent=2),
-              encoding="utf-8"
-          )
-          PY
-
-      - name: Save update
+      - name: Save updates
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/generators/status.json
-          git diff --cached --quiet || (
-            git commit -m "Daily generator status update" &&
+          git add data/generators/exhibitions.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Update exhibition listings"
             git push
-          )
+          fi
