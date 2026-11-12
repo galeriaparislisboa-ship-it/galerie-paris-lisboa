@@ -1,24 +1,19 @@
 #!/usr/bin/env python3
-"""Galerie Paris-Lisboa: daily Portugal exhibitions discovery.
-Requires: requests beautifulsoup4. No API keys.
-Writes data/generators/exhibitions.json.
-Only publishes exhibitions with explicit start/end dates and a source URL.
+"""Portugal Exhibition Finder V8 — discovery of dated exhibitions from public pages.
+Uses requests and beautifulsoup4 (already installed in GitHub Actions).
+Keeps existing verified exhibitions; never fabricates dates or events.
 """
 import json
 import re
-import time
-from datetime import datetime, date, timezone
+from datetime import date, datetime, timezone
 from pathlib import Path
-from urllib.parse import urljoin, urlparse
-
+from urllib.parse import urljoin, urlparse, urldefrag
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import requests
 from bs4 import BeautifulSoup
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / 'data' / 'generators' / 'exhibitions.json'
-
-# Curated official institutions and exhibition listings. Sites may block bots;
-# failures are reported in JSON, not silently treated as exhibitions.
 SOURCES = [
  ('CCB / MAC','Lisboa','Architecture','https://www.ccb.pt/'),
  ('MAAT','Lisboa','Art','https://www.maat.pt/'),
@@ -147,168 +142,169 @@ SOURCES = [
  ('Museu da Horta','Horta','Art','https://museu-horta.azores.gov.pt/'),
 ]
 
-KEYWORDS = re.compile(r'exposi[cç][aã]o|exhibition|exposi[cç][oõ]es|mostra|exhibit|exposição temporária', re.I)
-DATE_RE = re.compile(r'^\d{4}-\d{2}-\d{2}$')
 TODAY = date.today()
-SESSION = requests.Session()
-SESSION.headers.update({'User-Agent':'Mozilla/5.0 (compatible; GalerieParisLisboaExhibitions/2.0; cultural discovery)'})
-
+KEYWORDS = re.compile(r'exposi[cç][aãõo]?(?:o|es|ões)?|exhibition|exhibitions|exhibit|mostra|on.view|what.s.on|agenda|programa[cç][aã]o|em.cartaz|events?|exposicoes|exposicoes', re.I)
+DETAIL = re.compile(r'exposi[cç]|exhibition|exhibit|mostra', re.I)
+ISO_DATE = re.compile(r'\b(20\d{2}-\d{2}-\d{2})\b')
+DATE_PT = re.compile(r'\b(\d{1,2})\s+(?:de\s+)?(janeiro|fevereiro|mar[cç]o|abril|maio|junho|julho|agosto|setembro|outubro|novembro|dezembro)\s+(?:de\s+)?(20\d{2})\b', re.I)
+MONTHS = {m:i for i,m in enumerate(('janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'),1)}
+HEADERS = {'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36', 'Accept':'text/html,application/xhtml+xml', 'Accept-Language':'pt-PT,pt;q=0.9,en;q=0.7'}
+TIMEOUT = (4, 7)
+MAX_LINKS = 12
+MAX_WORKERS = 8
 
 def iso(value):
     if isinstance(value, dict):
         value = value.get('@value') or value.get('value')
-    if not isinstance(value, str):
-        return None
-    match = re.search(r'\b(20\d{2}-\d{2}-\d{2})\b', value)
-    if not match:
-        return None
-    try:
-        return date.fromisoformat(match.group(1)).isoformat()
-    except ValueError:
-        return None
+    if not isinstance(value, str): return None
+    match = ISO_DATE.search(value)
+    if match:
+        try: return date.fromisoformat(match.group(1)).isoformat()
+        except ValueError: return None
+    match = DATE_PT.search(value)
+    if match:
+        try:
+            day, month, year = match.groups()
+            return date(int(year), MONTHS[month.lower().replace('ç','ç')], int(day)).isoformat()
+        except (ValueError, KeyError): return None
+    return None
 
-
-def valid(event):
-    if not isinstance(event, dict):
-        return False
-    start, end = iso(event.get('start')), iso(event.get('end'))
-    if not start or not end or end < start or end < TODAY.isoformat():
-        return False
-    if not isinstance(event.get('title'), str) or len(event['title'].strip()) < 5:
-        return False
-    url = event.get('url', '')
-    return isinstance(url, str) and url.startswith(('http://','https://'))
-
+def valid(row):
+    if not isinstance(row, dict): return False
+    start, end = iso(row.get('start')), iso(row.get('end'))
+    return bool(start and end and start <= end and end >= TODAY.isoformat()
+                and len(str(row.get('title','')).strip()) >= 5
+                and str(row.get('url','')).startswith(('https://','http://')))
 
 def event_obj(title, city, category, venue, start, end, url, image=None):
-    result = {'title': str(title).strip()[:180], 'city': city, 'category': category,
-              'venue': venue, 'start': iso(start), 'end': iso(end), 'url': url}
-    if image and isinstance(image, str) and image.startswith('http'):
-        result['image'] = image
-    return result if valid(result) else None
+    row = dict(title=str(title).strip()[:180],city=city,category=category,
+               venue=str(venue or '').strip()[:140],start=iso(start),end=iso(end),url=url)
+    if isinstance(image,str) and image.startswith('http'): row['image']=image
+    return row if valid(row) else None
 
-
-def walk_json(obj):
-    if isinstance(obj, list):
-        for x in obj:
-            yield from walk_json(x)
-    elif isinstance(obj, dict):
+def walk(obj):
+    if isinstance(obj,list):
+        for item in obj: yield from walk(item)
+    elif isinstance(obj,dict):
         yield obj
-        for key in ('@graph', 'itemListElement', 'mainEntity', 'event', 'events'):
-            if key in obj:
-                yield from walk_json(obj[key])
+        for key in ('@graph','itemListElement','mainEntity','event','events','item'):
+            if key in obj: yield from walk(obj[key])
 
-
-def extract_events(soup, source_name, city, category, base):
-    events = []
-    for script in soup.select('script[type="application/ld+json"]'):
-        try:
-            data = json.loads(script.string or script.get_text())
-        except (ValueError, TypeError):
-            continue
-        for item in walk_json(data):
-            typ = item.get('@type', '')
-            types = typ if isinstance(typ, list) else [typ]
-            if not any(str(t).lower().endswith(('event','exhibitionevent','visualartsevent')) for t in types):
-                continue
-            title = item.get('name')
-            if not isinstance(title, str):
-                continue
-            # Require exhibition wording or exhibition-specific event type.
-            if not KEYWORDS.search(title + ' ' + str(item.get('description','')) + ' ' + source_name):
-                continue
-            start, end = iso(item.get('startDate')), iso(item.get('endDate'))
-            location = item.get('location', {})
-            venue = location.get('name') if isinstance(location, dict) else source_name
-            venue = venue or source_name
-            link = item.get('url') or base
-            if isinstance(link, list):
-                link = link[0] if link else base
-            if not isinstance(link, str):
-                link = base
-            image = item.get('image')
-            if isinstance(image, list):
-                image = image[0] if image else None
-            if isinstance(image, dict):
-                image = image.get('url')
-            e = event_obj(title, city, category, venue, start, end, urljoin(base, link), urljoin(base, image) if isinstance(image,str) else None)
-            if e:
-                events.append(e)
-    return events
-
-
-def crawl_source(name, city, category, url):
-    response = SESSION.get(url, timeout=13)
-    response.raise_for_status()
-    soup = BeautifulSoup(response.text, 'html.parser')
-    found = extract_events(soup, name, city, category, response.url)
-    # Discover relevant official event detail pages; limit per site for runtime.
-    links = []
-    host = urlparse(response.url).netloc.removeprefix('www.')
-    for a in soup.select('a[href]'):
-        href = urljoin(response.url, a['href'])
-        if urlparse(href).netloc.removeprefix('www.') != host:
-            continue
-        label = a.get_text(' ', strip=True) + ' ' + href
-        if KEYWORDS.search(label) and href not in links and href != response.url:
-            links.append(href)
-        if len(links) >= 5:
-            break
-    for link in links:
-        try:
-            r = SESSION.get(link, timeout=9)
-            r.raise_for_status()
-            found.extend(extract_events(BeautifulSoup(r.text,'html.parser'), name, city, category, r.url))
-        except requests.RequestException:
-            pass
+def extract(soup, name, city, category, url):
+    found=[]
+    for tag in soup.select('script[type="application/ld+json"]'):
+        try: data=json.loads(tag.string or tag.get_text())
+        except (ValueError, TypeError): continue
+        for item in walk(data):
+            types=item.get('@type',[])
+            if isinstance(types,str): types=[types]
+            if not any(str(t).lower().endswith(('event','exhibitionevent','visualartsevent')) for t in types): continue
+            title=item.get('name')
+            if not isinstance(title,str): continue
+            description=str(item.get('description',''))
+            if not DETAIL.search(title+' '+description+' '+name): continue
+            location=item.get('location') or {}
+            venue=location.get('name') if isinstance(location,dict) else name
+            link=item.get('url') or url
+            if isinstance(link,list): link=link[0] if link else url
+            if not isinstance(link,str): link=url
+            image=item.get('image')
+            if isinstance(image,list): image=image[0] if image else None
+            if isinstance(image,dict): image=image.get('url')
+            row=event_obj(title,city,category,venue or name,item.get('startDate'),item.get('endDate'),urljoin(url,link),urljoin(url,image) if isinstance(image,str) else None)
+            if row: found.append(row)
+    # Conservative HTML fallback: only on exhibition-specific detail pages,
+    # with two explicit dates in the page and a meaningful heading.
+    path=urlparse(url).path
+    if DETAIL.search(path):
+        heading=soup.select_one('main h1, article h1, h1')
+        title=heading.get_text(' ',strip=True) if heading else ''
+        if len(title)>=7 and not re.search(r'^(exposi[cç][oõ]es|exhibitions|agenda|programa[cç][aã]o)$',title,re.I):
+            main=soup.select_one('main, article') or soup
+            # Prefer semantic <time datetime="..."> elements to avoid unrelated page dates.
+            dates=[iso(t.get('datetime') or t.get_text(' ',strip=True)) for t in main.select('time')]
+            dates=[d for d in dates if d]
+            if len(dates)<2:
+                # On detail pages, date ranges usually appear near the heading.
+                segment=main.get_text(' ',strip=True)[:1300]
+                dates=[iso(m.group()) for m in ISO_DATE.finditer(segment)]
+                dates += [iso(m.group()) for m in DATE_PT.finditer(segment)]
+            dates=[d for d in dates if d]
+            if len(dates)>=2:
+                start,end=dates[0],dates[1]
+                image=soup.select_one('meta[property="og:image"]')
+                image_url=urljoin(url,image.get('content')) if image and image.get('content') else None
+                row=event_obj(title,city,category,name,start,end,url,image_url)
+                if row: found.append(row)
     return found
 
+def fetch(session,url):
+    r=session.get(url,headers=HEADERS,timeout=TIMEOUT,allow_redirects=True)
+    r.raise_for_status()
+    if 'html' not in r.headers.get('Content-Type','text/html').lower(): return None,None
+    return BeautifulSoup(r.text[:1500000],'html.parser'),r.url
+
+def crawl(source):
+    name,city,category,home=source
+    session=requests.Session()
+    try:
+        soup,base=fetch(session,home)
+        if soup is None: return [],None
+        found=extract(soup,name,city,category,base)
+        host=urlparse(base).netloc.removeprefix('www.')
+        links=[]
+        for a in soup.select('a[href]'):
+            href=urldefrag(urljoin(base,a.get('href','')))[0]
+            parsed=urlparse(href)
+            if parsed.scheme not in ('http','https') or parsed.netloc.removeprefix('www.')!=host: continue
+            if href==base or href in links: continue
+            label=a.get_text(' ',strip=True)+' '+parsed.path
+            if KEYWORDS.search(label): links.append(href)
+        # Priority to exhibition detail links, then listing pages.
+        links.sort(key=lambda u: (not bool(DETAIL.search(urlparse(u).path)),len(urlparse(u).path)))
+        for link in links[:MAX_LINKS]:
+            try:
+                page,final=fetch(session,link)
+                if page is not None: found.extend(extract(page,name,city,category,final))
+            except requests.RequestException: continue
+        return found,None
+    except requests.RequestException as exc:
+        return [],f'{name}: {str(exc)[:160]}'
+    finally: session.close()
 
 def old_events():
-    if not OUTPUT.exists():
-        return []
-    try:
-        data = json.loads(OUTPUT.read_text(encoding='utf-8'))
-    except (OSError, ValueError):
-        return []
-    kept = []
-    for row in data.get('events', []):
-        if isinstance(row, list) and len(row) >= 7:
-            row = dict(zip(('title','city','category','venue','start','end','url'),row))
-        if valid(row):
-            kept.append(row)
-    return kept
-
+    if not OUTPUT.exists(): return []
+    try: rows=json.loads(OUTPUT.read_text(encoding='utf-8')).get('events',[])
+    except (OSError,ValueError,AttributeError): return []
+    saved=[]
+    for row in rows:
+        if isinstance(row,list) and len(row)>=7:
+            row=dict(zip(('title','city','category','venue','start','end','url'),row))
+        if valid(row): saved.append(row)
+    return saved
 
 def main():
-    events = old_events()
-    errors = []
-    discovered = 0
-    for idx, (name, city, category, url) in enumerate(SOURCES, 1):
-        try:
-            fresh = crawl_source(name, city, category, url)
-            events.extend(fresh)
-            discovered += len(fresh)
-        except requests.RequestException as exc:
-            errors.append(f'{name}: {str(exc)[:180]}')
-        print(f'[{idx}/{len(SOURCES)}] {name}: total={len(events)}', flush=True)
-        time.sleep(0.08)
-    unique = {}
-    for row in events:
-        if not valid(row):
-            continue
-        key = (row['title'].casefold().strip(), row['start'], row['url'].rstrip('/'))
-        unique[key] = row
-    output = {
-        'updated_at': datetime.now(timezone.utc).isoformat(),
-        'sources_checked': len(SOURCES),
-        'newly_discovered': discovered,
-        'errors': errors,
-        'events': sorted(unique.values(), key=lambda e:(e['start'],e['city'],e['title']))
-    }
-    OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-    OUTPUT.write_text(json.dumps(output, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
-    print(f"Saved {len(output['events'])} verified-date events; {len(errors)} source errors", flush=True)
+    previous=old_events()
+    collected=[]; errors=[]
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
+        futures={pool.submit(crawl,source):source[0] for source in SOURCES}
+        for index,future in enumerate(as_completed(futures),1):
+            try: fresh,error=future.result()
+            except Exception as exc: fresh,error=[],f'{futures[future]}: {type(exc).__name__}: {exc}'
+            collected.extend(fresh)
+            if error: errors.append(error)
+            print(f'[{index}/{len(SOURCES)}] {futures[future]}: {len(fresh)} events',flush=True)
+    unique={}
+    for row in previous+collected:
+        if not valid(row): continue
+        key=(row['title'].casefold().strip(),row['start'],row['url'].rstrip('/'))
+        unique[key]=row
+    old_keys={(r['title'].casefold().strip(),r['start'],r['url'].rstrip('/')) for r in previous}
+    output=dict(updated_at=datetime.now(timezone.utc).isoformat(),sources_checked=len(SOURCES),
+                newly_discovered=len(set(unique)-old_keys),errors=errors,
+                events=sorted(unique.values(),key=lambda e:(e['start'],e['city'],e['title'])))
+    OUTPUT.parent.mkdir(parents=True,exist_ok=True)
+    OUTPUT.write_text(json.dumps(output,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    print(f"Saved {len(output['events'])} events; {output['newly_discovered']} newly discovered; {len(errors)} source errors",flush=True)
 
-if __name__ == '__main__':
-    main()
+if __name__=='__main__': main()
