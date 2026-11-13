@@ -3,7 +3,7 @@ name: Galerie Paris Lisboa Daily Update
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 8 * * *' # UTC; 08:00 winter / 09:00 summer in Lisbon
+    - cron: '0 8 * * *' # 08:00 UTC
 
 permissions:
   contents: write
@@ -11,6 +11,7 @@ permissions:
 jobs:
   daily-update:
     runs-on: ubuntu-latest
+
     steps:
       - name: Download repository
         uses: actions/checkout@v4
@@ -34,12 +35,20 @@ jobs:
       - name: Publish verified art news
         run: python scripts/update_art_news.py
 
+      - name: Collect Agenda LX exhibitions and images
+        run: python scripts/collect_agendalx.py
+
       - name: Save updates
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/generators/exhibitions.json data/generators/news_candidates.json data/generators/news.json
+
+          git add data/generators/exhibitions.json
+          git add data/generators/news_candidates.json
+          git add data/generators/news.json
+          git add data/generators/agendalx.json
+
           if ! git diff --cached --quiet; then
-            git commit -m "Daily exhibition and verified art news update"
+            git commit -m "Daily exhibition, Agenda LX and art news update"
             git push
           fi
