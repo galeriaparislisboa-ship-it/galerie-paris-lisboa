@@ -1,6 +1,51 @@
 {
-  "updated_at": "2026-11-13T18:15:51.437666+00:00",
+  "updated_at": "2026-11-13T18:32:04.501404+00:00",
   "candidates": [
+    {
+      "title": "Cancioneiro de Elvas",
+      "city": "Lisboa",
+      "venue": "CCB",
+      "date": "2026-11-13",
+      "official_url": "https://www.ccb.pt/evento/cancioneiro-de-elvas/",
+      "verified": false,
+      "discovered_from": "https://www.ccb.pt/evento/cancioneiro-de-elvas/"
+    },
+    {
+      "title": "Curso Uma Viagem Atlântica através da Arte Moderna",
+      "city": "Lisboa",
+      "venue": "CCB",
+      "date": "2026-11-14",
+      "official_url": "https://www.ccb.pt/evento/curso-uma-viagem-atlantica-atraves-da-arte-moderna/2026-11-14/",
+      "verified": false,
+      "discovered_from": "https://www.ccb.pt/evento/curso-uma-viagem-atlantica-atraves-da-arte-moderna"
+    },
+    {
+      "title": "Thread of voice",
+      "city": "Lisboa",
+      "venue": "CAM Gulbenkian",
+      "date": "2026-11-14",
+      "official_url": "https://gulbenkian.pt/cam/en/agenda/thread-of-voice/",
+      "verified": false,
+      "discovered_from": "https://gulbenkian.pt/cam/en/agenda/thread-of-voice/"
+    },
+    {
+      "title": "Ângela Ferreira",
+      "city": "Lisboa",
+      "venue": "CCB",
+      "date": "2026-11-14",
+      "official_url": "https://www.ccb.pt/evento/exposicao-angela-ferreira/2026-11-14/",
+      "verified": false,
+      "discovered_from": "https://www.ccb.pt/evento/exposicao-angela-ferreira"
+    },
+    {
+      "title": "Sara Sadik. Khtobtogone",
+      "city": "Lisboa",
+      "venue": "CAM Gulbenkian",
+      "date": "2026-11-16",
+      "official_url": "https://gulbenkian.pt/cam/en/agenda/sara-sadik-khtobtogone/",
+      "verified": false,
+      "discovered_from": "https://gulbenkian.pt/cam/en/agenda/sara-sadik-khtobtogone/"
+    },
     {
       "title": "<p>Laura Palma: Where the Flowers Bloom</p>",
       "city": "Porto",
@@ -9,6 +54,15 @@
       "official_url": "https://www.serralves.pt/agenda-serralves/",
       "verified": false,
       "discovered_from": "https://www.serralves.pt/agenda-serralves/"
+    },
+    {
+      "title": "A Coleção Imaginária",
+      "city": "Lisboa",
+      "venue": "Gulbenkian",
+      "date": "2026-11-21",
+      "official_url": "https://gulbenkian.pt/agenda/a-colecao-imaginaria/",
+      "verified": false,
+      "discovered_from": "https://gulbenkian.pt/agenda/a-colecao-imaginaria/"
     },
     {
       "title": "<p>Anri Sala</p>",
@@ -20,6 +74,15 @@
       "discovered_from": "https://www.serralves.pt/agenda-serralves/"
     },
     {
+      "title": "Natsumi Aoyagi. Sanitary Fables",
+      "city": "Lisboa",
+      "venue": "CAM Gulbenkian",
+      "date": "2026-11-28",
+      "official_url": "https://gulbenkian.pt/cam/en/agenda/natsumi-aoyagi-sanitary-fables/",
+      "verified": false,
+      "discovered_from": "https://gulbenkian.pt/cam/en/agenda/natsumi-aoyagi-sanitary-fables/"
+    },
+    {
       "title": "<p>FOCO - ECOS DA VIDA MODERNA</p>",
       "city": "Porto",
       "venue": "Serralves",
@@ -27,6 +90,42 @@
       "official_url": "https://www.serralves.pt/agenda-serralves/",
       "verified": false,
       "discovered_from": "https://www.serralves.pt/agenda-serralves/"
+    },
+    {
+      "title": "FOCO - ECHOES OF MODERN LIFE",
+      "city": "Porto",
+      "venue": "Serralves",
+      "date": "2026-11-29",
+      "official_url": "https://www.serralves.pt/en/agenda-serralves/",
+      "verified": false,
+      "discovered_from": "https://www.serralves.pt/en/agenda-serralves/"
+    },
+    {
+      "title": "Mercado CCB",
+      "city": "Lisboa",
+      "venue": "CCB",
+      "date": "2026-12-01",
+      "official_url": "https://www.ccb.pt/evento/mercado-ccb/2026-12-01/",
+      "verified": false,
+      "discovered_from": "https://www.ccb.pt/evento/mercado-ccb/"
+    },
+    {
+      "title": "Poetry in the Gallery with Alice Neto de Sousa",
+      "city": "Lisboa",
+      "venue": "CAM Gulbenkian",
+      "date": "2026-12-06",
+      "official_url": "https://gulbenkian.pt/cam/en/agenda/poetry-in-the-gallery-with-alice-neto-de-sousa/",
+      "verified": false,
+      "discovered_from": "https://gulbenkian.pt/cam/en/agenda/poetry-in-the-gallery-with-alice-neto-de-sousa/"
+    },
+    {
+      "title": "The best of CAM",
+      "city": "Lisboa",
+      "venue": "CAM Gulbenkian",
+      "date": "2026-12-18",
+      "official_url": "https://gulbenkian.pt/cam/en/agenda/the-best-of-cam/",
+      "verified": false,
+      "discovered_from": "https://gulbenkian.pt/cam/en/agenda/the-best-of-cam/"
     },
     {
       "title": "<p>ESCULTURAS NO PARQUE</p>",
@@ -54,6 +153,24 @@
       "official_url": "https://www.serralves.pt/agenda-serralves/",
       "verified": false,
       "discovered_from": "https://www.serralves.pt/agenda-serralves/"
+    },
+    {
+      "title": "THE CENTURY OF GEHRY",
+      "city": "Porto",
+      "venue": "Serralves",
+      "date": "2027-01-10",
+      "official_url": "https://www.serralves.pt/en/agenda-serralves/",
+      "verified": false,
+      "discovered_from": "https://www.serralves.pt/en/agenda-serralves/"
+    },
+    {
+      "title": "Rosana Antolí. An Aria for the Mallard",
+      "city": "Lisboa",
+      "venue": "CAM Gulbenkian",
+      "date": "2027-01-11",
+      "official_url": "https://gulbenkian.pt/cam/en/agenda/rosana-antoli-an-aria-for-the-mallard/",
+      "verified": false,
+      "discovered_from": "https://gulbenkian.pt/cam/en/agenda/rosana-antoli-an-aria-for-the-mallard/"
     },
     {
       "title": "EXAMPLE — replace with a confirmed exhibition title",
@@ -92,6 +209,105 @@
       "discovered_from": "https://www.serralves.pt/agenda-serralves/"
     },
     {
+      "title": "HIDDEN SYMMETRIES IN GLASS WALLS",
+      "city": "Porto",
+      "venue": "Serralves",
+      "date": "2027-01-31",
+      "official_url": "https://www.serralves.pt/en/agenda-serralves/",
+      "verified": false,
+      "discovered_from": "https://www.serralves.pt/en/agenda-serralves/"
+    },
+    {
+      "title": "Espólio Helena Almeida",
+      "city": "Lisboa",
+      "venue": "Gulbenkian",
+      "date": "2027-02-02",
+      "official_url": "https://gulbenkian.pt/agenda/espolio-helena-almeida/",
+      "verified": false,
+      "discovered_from": "https://gulbenkian.pt/agenda/espolio-helena-almeida/"
+    },
+    {
+      "title": "Painting Is Easy. Do It Yourself!",
+      "city": "Lisboa",
+      "venue": "CAM Gulbenkian",
+      "date": "2027-02-08",
+      "official_url": "https://gulbenkian.pt/cam/en/agenda/painting-is-easy-do-it-yourself/",
+      "verified": false,
+      "discovered_from": "https://gulbenkian.pt/cam/en/agenda/painting-is-easy-do-it-yourself/"
+    },
+    {
+      "title": "Pintar É Fácil. Faça Você Mesmo!",
+      "city": "Lisboa",
+      "venue": "Gulbenkian",
+      "date": "2027-02-08",
+      "official_url": "https://gulbenkian.pt/agenda/pintar-e-facil-faca-voce-mesmo/",
+      "verified": false,
+      "discovered_from": "https://gulbenkian.pt/agenda/pintar-e-facil-faca-voce-mesmo/"
+    },
+    {
+      "title": "Conversations in Motion: with João Pinharanda and João Norton SJ | MAAT",
+      "city": "Lisboa",
+      "venue": "MAAT",
+      "date": "2027-02-15",
+      "official_url": "https://www.maat.pt/en/event/conversations-motion-joao-pinharanda-and-joao-norton-sj",
+      "verified": false,
+      "discovered_from": "https://www.maat.pt/en/event/conversations-motion-joao-pinharanda-and-joao-norton-sj"
+    },
+    {
+      "title": "Life Is the Game | MAAT",
+      "city": "Lisboa",
+      "venue": "MAAT",
+      "date": "2027-02-15",
+      "official_url": "https://www.maat.pt/en/event/life-game",
+      "verified": false,
+      "discovered_from": "https://www.maat.pt/en/event/life-game"
+    },
+    {
+      "title": "Pedro Cabrita Reis – “without sorrow of heart”* | MAAT",
+      "city": "Lisboa",
+      "venue": "MAAT",
+      "date": "2027-02-15",
+      "official_url": "https://www.maat.pt/en/event/pedro-cabrita-reis-without-sorrow-heart",
+      "verified": false,
+      "discovered_from": "https://www.maat.pt/en/event/pedro-cabrita-reis-without-sorrow-heart"
+    },
+    {
+      "title": "A Exposição de um Sonho",
+      "city": "Lisboa",
+      "venue": "Gulbenkian",
+      "date": "2027-02-22",
+      "official_url": "https://gulbenkian.pt/agenda/exposicao-de-um-sonho/",
+      "verified": false,
+      "discovered_from": "https://gulbenkian.pt/agenda/exposicao-de-um-sonho/"
+    },
+    {
+      "title": "Fringe Embroidery Workshop | MAAT",
+      "city": "Lisboa",
+      "venue": "MAAT",
+      "date": "2027-02-22",
+      "official_url": "https://www.maat.pt/en/event/fringe-embroidery-workshop",
+      "verified": false,
+      "discovered_from": "https://www.maat.pt/en/event/fringe-embroidery-workshop"
+    },
+    {
+      "title": "Tours to the exhibition VENUS – Valentino Garavani through the eyes of Joana Vasconcelos | MAAT",
+      "city": "Lisboa",
+      "venue": "MAAT",
+      "date": "2027-02-22",
+      "official_url": "https://www.maat.pt/en/event/tours-exhibition-venus-valentino-garavani-through-eyes-joana-vasconcelos",
+      "verified": false,
+      "discovered_from": "https://www.maat.pt/en/event/tours-exhibition-venus-valentino-garavani-through-eyes-joana-vasconcelos"
+    },
+    {
+      "title": "VENUS – Valentino Garavani through the eyes of Joana Vasconcelos | MAAT",
+      "city": "Lisboa",
+      "venue": "MAAT",
+      "date": "2027-02-22",
+      "official_url": "https://www.maat.pt/en/event/venus-valentino-garavani-through-eyes-joana-vasconcelos",
+      "verified": false,
+      "discovered_from": "https://www.maat.pt/en/event/venus-valentino-garavani-through-eyes-joana-vasconcelos"
+    },
+    {
       "title": "<p>Afinidades eletivas: Joan MirÃ³ e a arte contemporÃ¢nea na ColeÃ§Ã£o do Museu de Serralves</p>",
       "city": "Porto",
       "venue": "Serralves",
@@ -99,6 +315,15 @@
       "official_url": "https://www.serralves.pt/agenda-serralves/",
       "verified": false,
       "discovered_from": "https://www.serralves.pt/agenda-serralves/"
+    },
+    {
+      "title": "Elective Affinities: Joan MirÃ³ and Contemporary Art from the Collection of the Museu Serralves",
+      "city": "Porto",
+      "venue": "Serralves",
+      "date": "2027-03-07",
+      "official_url": "https://www.serralves.pt/en/agenda-serralves/",
+      "verified": false,
+      "discovered_from": "https://www.serralves.pt/en/agenda-serralves/"
     },
     {
       "title": "<p>Lee Ufan</p>",
@@ -110,6 +335,24 @@
       "discovered_from": "https://www.serralves.pt/agenda-serralves/"
     },
     {
+      "title": "Agenda | MAAT",
+      "city": "Lisboa",
+      "venue": "MAAT",
+      "date": "2027-05-19",
+      "official_url": "https://www.maat.pt/en/agenda",
+      "verified": false,
+      "discovered_from": "https://www.maat.pt/en/agenda"
+    },
+    {
+      "title": "MAAT Youth Collective 2026–2027 | MAAT",
+      "city": "Lisboa",
+      "venue": "MAAT",
+      "date": "2027-05-19",
+      "official_url": "https://www.maat.pt/en/programme/maat-youth-collective-2026-2027",
+      "verified": false,
+      "discovered_from": "https://www.maat.pt/en/programme/maat-youth-collective-2026-2027"
+    },
+    {
       "title": "<p>Miguel Gomes</p>",
       "city": "Porto",
       "venue": "Serralves",
@@ -117,6 +360,24 @@
       "official_url": "https://www.serralves.pt/agenda-serralves/",
       "verified": false,
       "discovered_from": "https://www.serralves.pt/agenda-serralves/"
+    },
+    {
+      "title": "Scheherazade, the Never-ending Collection of CAM",
+      "city": "Lisboa",
+      "venue": "CAM Gulbenkian",
+      "date": "2027-05-31",
+      "official_url": "https://gulbenkian.pt/cam/en/agenda/scheherazade-the-never-ending-collection-of-cam/",
+      "verified": false,
+      "discovered_from": "https://gulbenkian.pt/cam/en/agenda/scheherazade-the-never-ending-collection-of-cam/"
+    },
+    {
+      "title": "Xerazade, a Coleção Interminável do CAM",
+      "city": "Lisboa",
+      "venue": "Gulbenkian",
+      "date": "2027-05-31",
+      "official_url": "https://gulbenkian.pt/agenda/xerazade-a-colecao-interminavel-do-cam/",
+      "verified": false,
+      "discovered_from": "https://gulbenkian.pt/agenda/xerazade-a-colecao-interminavel-do-cam/"
     },
     {
       "title": "<p>Fernanda Fragateiro. Abrir janelas Ã  pedrada</p>",
@@ -128,6 +389,15 @@
       "discovered_from": "https://www.serralves.pt/agenda-serralves/"
     },
     {
+      "title": "Fernanda Fragateiro. Opening Windows With Stones",
+      "city": "Porto",
+      "venue": "Serralves",
+      "date": "2027-08-30",
+      "official_url": "https://www.serralves.pt/en/agenda-serralves/",
+      "verified": false,
+      "discovered_from": "https://www.serralves.pt/en/agenda-serralves/"
+    },
+    {
       "title": "<p>ANNEA LOCKWOOD</p>",
       "city": "Porto",
       "venue": "Serralves",
@@ -135,6 +405,15 @@
       "official_url": "https://www.serralves.pt/agenda-serralves/",
       "verified": false,
       "discovered_from": "https://www.serralves.pt/agenda-serralves/"
+    },
+    {
+      "title": "Agenda | MAAT",
+      "city": "Lisboa",
+      "venue": "MAAT",
+      "date": "2028-04-10",
+      "official_url": "https://www.maat.pt/en/agenda",
+      "verified": false,
+      "discovered_from": "https://www.maat.pt/en/agenda?page=9"
     }
   ]
 }
