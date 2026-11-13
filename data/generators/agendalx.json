@@ -1,6 +1,63 @@
 {
-  "updated_at": "2026-11-13T22:59:25.647469+00:00",
+  "updated_at": "2026-11-13T23:12:05.055388+00:00",
   "source": "https://www.agendalx.pt/?categories=artes&s=&type=event&archive=artes",
-  "events": [],
-  "errors": []
+  "events": [
+    {
+      "title": "Podcasts",
+      "city": "Lisboa",
+      "venue": "",
+      "category": "Art",
+      "start": "",
+      "end": "",
+      "url": "https://www.agendalx.pt/podcasts/",
+      "image": "https://www.agendalx.pt/content/uploads/2022/05/FS_site.jpg",
+      "source": "Agenda LX",
+      "date_verified": false
+    },
+    {
+      "title": "Homepage Magazine",
+      "city": "Lisboa",
+      "venue": "",
+      "category": "Art",
+      "start": "",
+      "end": "",
+      "url": "https://www.agendalx.pt/homepage-magazine/",
+      "image": "https://www.agendalx.pt/content/plugins/sitepress-multilingual-cms/res/flags/en.png",
+      "source": "Agenda LX",
+      "date_verified": false
+    },
+    {
+      "title": "directorio",
+      "city": "Lisboa",
+      "venue": "",
+      "category": "Art",
+      "start": "",
+      "end": "",
+      "url": "https://www.agendalx.pt/directorio/",
+      "image": "https://www.agendalx.pt/content/plugins/sitepress-multilingual-cms/res/flags/en.png",
+      "source": "Agenda LX",
+      "date_verified": false
+    },
+    {
+      "title": "ficha técnica e contactos",
+      "city": "Lisboa",
+      "venue": "",
+      "category": "Art",
+      "start": "",
+      "end": "",
+      "url": "https://agendalx.pt/ficha-tecnica/",
+      "image": "https://www.agendalx.pt/content/plugins/sitepress-multilingual-cms/res/flags/en.png",
+      "source": "Agenda LX",
+      "date_verified": false
+    }
+  ],
+  "errors": [
+    "Listing page 2: 404 Client Error: Not Found for url: https://www.agendalx.pt/?categories=artes&s=&type=event&archive=artes&paged=2"
+  ],
+  "diagnostics": [
+    {
+      "page": 1,
+      "candidate_links": 4
+    }
+  ]
 }
