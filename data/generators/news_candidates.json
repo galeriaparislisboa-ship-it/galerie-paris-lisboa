@@ -1,5 +1,60 @@
 {
+  "updated_at": "2026-11-13T17:43:12.914470+00:00",
   "candidates": [
+    {
+      "title": "<p>Laura Palma: Where the Flowers Bloom</p>",
+      "city": "Porto",
+      "venue": "Serralves",
+      "date": "2026-11-17",
+      "official_url": "https://www.serralves.pt/agenda-serralves/",
+      "verified": false,
+      "discovered_from": "https://www.serralves.pt/agenda-serralves/"
+    },
+    {
+      "title": "<p>Anri Sala</p>",
+      "city": "Porto",
+      "venue": "Serralves",
+      "date": "2026-11-27",
+      "official_url": "https://www.serralves.pt/agenda-serralves/",
+      "verified": false,
+      "discovered_from": "https://www.serralves.pt/agenda-serralves/"
+    },
+    {
+      "title": "<p>FOCO - ECOS DA VIDA MODERNA</p>",
+      "city": "Porto",
+      "venue": "Serralves",
+      "date": "2026-11-29",
+      "official_url": "https://www.serralves.pt/agenda-serralves/",
+      "verified": false,
+      "discovered_from": "https://www.serralves.pt/agenda-serralves/"
+    },
+    {
+      "title": "<p>ESCULTURAS NO PARQUE</p>",
+      "city": "Porto",
+      "venue": "Serralves",
+      "date": "2026-12-31",
+      "official_url": "https://www.serralves.pt/agenda-serralves/",
+      "verified": false,
+      "discovered_from": "https://www.serralves.pt/agenda-serralves/"
+    },
+    {
+      "title": "<p>Jenny Holzer</p>",
+      "city": "Porto",
+      "venue": "Serralves",
+      "date": "2027-01-03",
+      "official_url": "https://www.serralves.pt/agenda-serralves/",
+      "verified": false,
+      "discovered_from": "https://www.serralves.pt/agenda-serralves/"
+    },
+    {
+      "title": "<p>O sÃ©culo de Gehry</p>",
+      "city": "Porto",
+      "venue": "Serralves",
+      "date": "2027-01-10",
+      "official_url": "https://www.serralves.pt/agenda-serralves/",
+      "verified": false,
+      "discovered_from": "https://www.serralves.pt/agenda-serralves/"
+    },
     {
       "title": "EXAMPLE — replace with a confirmed exhibition title",
       "city": "Lisboa",
@@ -8,6 +63,78 @@
       "official_url": "https://example.org/event",
       "discovered_via": "public Instagram post (internal note only)",
       "verified": false
+    },
+    {
+      "title": "<p>Alice Neel</p>",
+      "city": "Porto",
+      "venue": "Serralves",
+      "date": "2027-01-17",
+      "official_url": "https://www.serralves.pt/agenda-serralves/",
+      "verified": false,
+      "discovered_from": "https://www.serralves.pt/agenda-serralves/"
+    },
+    {
+      "title": "<p>MANOEL DE OLIVEIRA</p>",
+      "city": "Porto",
+      "venue": "Serralves",
+      "date": "2027-01-31",
+      "official_url": "https://www.serralves.pt/agenda-serralves/",
+      "verified": false,
+      "discovered_from": "https://www.serralves.pt/agenda-serralves/"
+    },
+    {
+      "title": "<p>SIMETRIAS OCULTAS EM MUROS DE VIDRO</p>",
+      "city": "Porto",
+      "venue": "Serralves",
+      "date": "2027-01-31",
+      "official_url": "https://www.serralves.pt/agenda-serralves/",
+      "verified": false,
+      "discovered_from": "https://www.serralves.pt/agenda-serralves/"
+    },
+    {
+      "title": "<p>Afinidades eletivas: Joan MirÃ³ e a arte contemporÃ¢nea na ColeÃ§Ã£o do Museu de Serralves</p>",
+      "city": "Porto",
+      "venue": "Serralves",
+      "date": "2027-03-07",
+      "official_url": "https://www.serralves.pt/agenda-serralves/",
+      "verified": false,
+      "discovered_from": "https://www.serralves.pt/agenda-serralves/"
+    },
+    {
+      "title": "<p>Lee Ufan</p>",
+      "city": "Porto",
+      "venue": "Serralves",
+      "date": "2027-03-31",
+      "official_url": "https://www.serralves.pt/agenda-serralves/",
+      "verified": false,
+      "discovered_from": "https://www.serralves.pt/agenda-serralves/"
+    },
+    {
+      "title": "<p>Miguel Gomes</p>",
+      "city": "Porto",
+      "venue": "Serralves",
+      "date": "2027-05-30",
+      "official_url": "https://www.serralves.pt/agenda-serralves/",
+      "verified": false,
+      "discovered_from": "https://www.serralves.pt/agenda-serralves/"
+    },
+    {
+      "title": "<p>Fernanda Fragateiro. Abrir janelas Ã  pedrada</p>",
+      "city": "Porto",
+      "venue": "Serralves",
+      "date": "2027-08-30",
+      "official_url": "https://www.serralves.pt/agenda-serralves/",
+      "verified": false,
+      "discovered_from": "https://www.serralves.pt/agenda-serralves/"
+    },
+    {
+      "title": "<p>ANNEA LOCKWOOD</p>",
+      "city": "Porto",
+      "venue": "Serralves",
+      "date": "2027-08-31",
+      "official_url": "https://www.serralves.pt/agenda-serralves/",
+      "verified": false,
+      "discovered_from": "https://www.serralves.pt/agenda-serralves/"
     }
   ]
 }
