@@ -1,16 +1,14 @@
 #!/usr/bin/env python3
-"""Discover dated art-event candidates from official Portuguese venue pages.
+"""Collect official event metadata; retain reviewable provenance.
 
-Only JSON-LD Event/ExhibitionEvent structured data is accepted. This is a
-conservative discovery stage, NOT an Instagram scraper or automatic verification.
-Candidates remain verified=False until reviewed, as required by update_art_news.py.
+Automatic verification requires a dedicated official event URL and a date from
+JSON-LD. A venue's generic agenda page is not sufficient proof of an event.
 """
 import json
 import re
 from datetime import date, datetime, timezone
 from pathlib import Path
 from urllib.parse import urljoin, urlparse
-
 import requests
 from bs4 import BeautifulSoup
 
@@ -26,95 +24,91 @@ SOURCES = [
     ('Museu de Arte Contemporânea de Elvas', 'Elvas', 'https://www.cm-elvas.pt/'),
     ('Culturgest', 'Lisboa', 'https://www.culturgest.pt/'),
 ]
-HEADERS = {'User-Agent': 'GalerieParisLisboaArtAgenda/1.0 (public event metadata; respectful crawler)'}
+HEADERS = {'User-Agent': 'GalerieParisLisboaArtAgenda/1.0 (public event metadata)'}
 
+def events(obj):
+    if isinstance(obj, list):
+        for value in obj:
+            yield from events(value)
+    elif isinstance(obj, dict):
+        types = obj.get('@type', [])
+        types = [types] if isinstance(types, str) else types if isinstance(types, list) else []
+        if any(str(t).split('/')[-1].endswith('Event') for t in types):
+            yield obj
+        for field in ('@graph', 'itemListElement'):
+            yield from events(obj.get(field, []))
 
-def event_objects(value):
-    if isinstance(value, list):
-        for child in value:
-            yield from event_objects(child)
-    elif isinstance(value, dict):
-        typ = value.get('@type', [])
-        types = [typ] if isinstance(typ, str) else typ if isinstance(typ, list) else []
-        if any(str(t).endswith('Event') for t in types):
-            yield value
-        for key in ('@graph', 'itemListElement'):
-            if key in value:
-                yield from event_objects(value[key])
-
-
-def parse_day(value):
+def day(value):
     if not isinstance(value, str):
         return None
     match = re.match(r'^\d{4}-\d{2}-\d{2}', value)
-    if not match:
-        return None
     try:
-        return date.fromisoformat(match.group())
+        return date.fromisoformat(match.group()) if match else None
     except ValueError:
         return None
 
+def event_url(value, source):
+    if not isinstance(value, str) or not value.strip():
+        return None
+    url = urljoin(source, value.strip())
+    parsed, origin = urlparse(url), urlparse(source)
+    if parsed.scheme != 'https' or parsed.hostname != origin.hostname:
+        return None
+    if parsed.path.rstrip('/') == origin.path.rstrip('/'):
+        return None
+    return url
 
-def official_link(link, base):
-    if not isinstance(link, str):
-        return base
-    full = urljoin(base, link)
-    parsed, origin = urlparse(full), urlparse(base)
-    return full if parsed.scheme == 'https' and parsed.hostname == origin.hostname else base
-
-
-def fetch_source(session, venue, city, url):
-    response = session.get(url, headers=HEADERS, timeout=18)
+def collect(session, venue, city, source):
+    response = session.get(source, headers=HEADERS, timeout=18)
     response.raise_for_status()
     if 'text/html' not in response.headers.get('Content-Type', '').lower():
         return []
     soup = BeautifulSoup(response.text[:1_500_000], 'html.parser')
-    rows = []
+    found = []
     for script in soup.find_all('script', type='application/ld+json'):
         try:
-            data = json.loads(script.string or script.get_text())
-        except (ValueError, TypeError):
+            obj = json.loads(script.string or script.get_text())
+        except (TypeError, ValueError):
             continue
-        for event in event_objects(data):
-            start = parse_day(event.get('startDate'))
-            end = parse_day(event.get('endDate')) or start
+        for event in events(obj):
+            start = day(event.get('startDate'))
+            end = day(event.get('endDate')) or start
             title = event.get('name')
-            if not (start and end and end >= date.today() and isinstance(title, str) and 4 <= len(title.strip()) <= 180):
+            url = event_url(event.get('url'), source)
+            if not (start and end and end >= date.today() and url and isinstance(title, str)
+                    and 4 <= len(title.strip()) <= 180):
                 continue
-            # Use start date for future events, end date for ongoing exhibitions.
-            day = start if start >= date.today() else end
-            rows.append({'title': title.strip(), 'city': city, 'venue': venue,
-                         'date': day.isoformat(), 'official_url': official_link(event.get('url'), url),
-                         'verified': False, 'discovered_from': url})
-    return rows
-
+            found.append({'title': BeautifulSoup(title, 'html.parser').get_text(' ', strip=True),
+                          'city': city, 'venue': venue,
+                          'date': (start if start >= date.today() else end).isoformat(),
+                          'official_url': url, 'verified': False, 'discovered_from': source})
+    return found
 
 def main():
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     try:
-        existing = json.loads(OUTPUT.read_text(encoding='utf-8'))
-        candidates = existing.get('candidates', []) if isinstance(existing, dict) else []
-    except (OSError, ValueError):
-        candidates = []
+        old = json.loads(OUTPUT.read_text(encoding='utf-8')).get('candidates', [])
+    except (OSError, ValueError, AttributeError):
+        old = []
     unique = {}
-    for item in candidates:
+    for item in old:
         if isinstance(item, dict) and item.get('title') and item.get('date'):
-            unique[(item['title'].casefold(), item.get('city', '').casefold(), item['date'])] = item
+            unique[(item['title'].casefold(), str(item.get('city', '')).casefold(), item['date'])] = item
     with requests.Session() as session:
-        for venue, city, url in SOURCES:
+        for venue, city, source in SOURCES:
             try:
-                found = fetch_source(session, venue, city, url)
-                print(f'{venue}: {len(found)} structured events found')
-                for item in found:
+                items = collect(session, venue, city, source)
+                print(f'{venue}: {len(items)} eligible event candidates')
+                for item in items:
                     key = (item['title'].casefold(), item['city'].casefold(), item['date'])
-                    unique.setdefault(key, item)  # Never override human verification
+                    unique.setdefault(key, item)
             except requests.RequestException as exc:
                 print(f'{venue}: unavailable ({type(exc).__name__})')
+    # Preserve manually reviewed items, but never infer verification from a generic agenda URL.
     output = {'updated_at': datetime.now(timezone.utc).isoformat(),
-              'candidates': sorted(unique.values(), key=lambda x: (x.get('date', ''), x.get('title', '')))}
+              'candidates': sorted(unique.values(), key=lambda x: (str(x.get('date', '')), str(x.get('title', ''))))}
     OUTPUT.write_text(json.dumps(output, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-    print(f'{len(output["candidates"])} candidates; review verified=false entries before publication')
-
+    print(f'{len(unique)} candidates retained')
 
 if __name__ == '__main__':
     main()
