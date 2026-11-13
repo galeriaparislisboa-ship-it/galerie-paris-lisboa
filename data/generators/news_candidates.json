@@ -1,0 +1,13 @@
+{
+  "candidates": [
+    {
+      "title": "EXAMPLE — replace with a confirmed exhibition title",
+      "city": "Lisboa",
+      "venue": "EXAMPLE venue",
+      "date": "2027-01-15",
+      "official_url": "https://example.org/event",
+      "discovered_via": "public Instagram post (internal note only)",
+      "verified": false
+    }
+  ]
+}
