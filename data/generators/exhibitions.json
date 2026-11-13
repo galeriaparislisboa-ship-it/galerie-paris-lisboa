@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-11-12T18:02:37.463055+00:00",
+  "updated_at": "2026-11-13T08:49:05.881385+00:00",
   "sources_checked": 125,
-  "newly_discovered": 10,
+  "newly_discovered": 1,
   "errors": [
     "MUDE: 403 Client Error: Forbidden for url: https://mude.pt/",
     "Museu Nacional de Arte Antiga: HTTPSConnectionPool(host='www.museudearteantiga.pt', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, \"[SSL: CERTIFIC",
-    "Museu Nacional do Teatro e da Dança: HTTPSConnectionPool(host='www.museudoteatroedanca.gov.pt', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_",
     "Museu Nacional do Traje: HTTPSConnectionPool(host='www.museudotraje.gov.pt', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_R",
+    "Museu Nacional do Teatro e da Dança: HTTPSConnectionPool(host='www.museudoteatroedanca.gov.pt', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_",
     "Museu da Carris: HTTPSConnectionPool(host='museu.carris.pt', port=443): Read timed out. (read timeout=7)",
     "Galeria 111: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))",
     "Galeria Foco: HTTPSConnectionPool(host='www.focogallery.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.focogaller",
@@ -22,13 +22,12 @@
     "Museu José Malhoa: HTTPSConnectionPool(host='www.museujosemalhoa.gov.pt', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.mus",
     "Museu da Cerâmica: HTTPSConnectionPool(host='www.museudaceramica.gov.pt', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.mus",
     "Museu de Santarém: HTTPSConnectionPool(host='www.cm-santarem.pt', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.cm-santarem",
-    "Centro de Arte Manuel de Brito: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",
-    "Museu de Oeiras: 513 Server Error:  for url: https://www.oeiras.pt/",
+    "Museu de Oeiras: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",
+    "Centro de Arte Manuel de Brito: 513 Server Error:  for url: https://www.oeiras.pt/",
     "Museu de Évora: HTTPSConnectionPool(host='www.museudevora.gov.pt', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.museude",
-    "Centro de Arte e Cultura FEA: HTTPSConnectionPool(host='www.fundacaoeugeniodealmeida.pt', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, \"[SSL: C",
     "Fundação Eugénio de Almeida: HTTPSConnectionPool(host='www.fundacaoeugeniodealmeida.pt', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, \"[SSL: C",
+    "Centro de Arte e Cultura FEA: HTTPSConnectionPool(host='www.fundacaoeugeniodealmeida.pt', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, \"[SSL: C",
     "Museu Municipal de Tavira: HTTPSConnectionPool(host='museumunicipaldetavira.cm-tavira.pt', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLError(1, '[SSL: TLSV1_UNRECOG",
-    "Centro Cultural de Cascais: HTTPSConnectionPool(host='fundacaodomluis.pt', port=443): Read timed out. (read timeout=7)",
     "Museu de Arte Contemporânea da Madeira: HTTPSConnectionPool(host='www.mudas.pt', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.mudas.pt', port=4",
     "MUDAS Museu de Arte Contemporânea: HTTPSConnectionPool(host='www.mudas.pt', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.mudas.pt', port=4",
     "Museu Carlos Machado: 403 Client Error: Forbidden for url: https://museucarlosmachado.azores.gov.pt/",
@@ -79,15 +78,6 @@
       "image": "https://museumaritimo.cm-ilhavo.pt/museumaritimo/uploads/event/image/1372/imagem_jpeg.jpeg"
     },
     {
-      "title": "O Inferno, Dantes",
-      "city": "Lisboa",
-      "category": "Art",
-      "venue": "Galeria São Mamede, Porto",
-      "start": "2026-09-19",
-      "end": "2026-11-12",
-      "url": "https://www.saomamede.com/listagem/exposicoes/o-inferno-dantes"
-    },
-    {
       "title": "'Astutas: Uma exposição imersiva sobre as salinas do século XXI”",
       "city": "Aveiro",
       "category": "Art",
@@ -126,16 +116,6 @@
       "image": "https://www.ccb.pt/wp-content/uploads/2025/11/AngelaFerreira.HereIStand1_MACCCB2026creditoTiagoCasanova.jpg"
     },
     {
-      "title": "Abria a Exposição A Ciência Cura",
-      "city": "Vila Franca de Xira",
-      "category": "Art",
-      "venue": "Museu do Neo-Realismo",
-      "start": "2026-11-12",
-      "end": "2026-11-12",
-      "url": "https://www.museudoneorealismo.pt/evento-719/abria-a-exposicao-a-ciencia-cura",
-      "image": "https://www.museudoneorealismo.pt/cmvfxira/uploads/event/image/16137/site_mnr_1280x848pxddd_1_2500_2500.jpg"
-    },
-    {
       "title": "Ângela Ferreira",
       "city": "Lisboa",
       "category": "Photography",
@@ -143,6 +123,16 @@
       "start": "2026-11-13",
       "end": "2026-11-13",
       "url": "https://www.ccb.pt/evento/exposicao-angela-ferreira/2026-11-13/"
+    },
+    {
+      "title": "Abria a Exposição Carla Filipe - The Return of the Real",
+      "city": "Vila Franca de Xira",
+      "category": "Art",
+      "venue": "Museu do Neo-Realismo",
+      "start": "2026-11-13",
+      "end": "2026-11-13",
+      "url": "https://www.museudoneorealismo.pt/evento-719/abria-a-exposicao-carla-filipe-the-return-of-the-real",
+      "image": "https://www.museudoneorealismo.pt/cmvfxira/uploads/event/image/16138/exposicao_carla_filipe___fotos_ggirp__12__1_2500_2500.jpg"
     },
     {
       "title": "Francisco Tropa  ASSEMBLAGE",
