@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-13T23:36:45.568115+00:00",
+  "updated_at": "2026-11-14T00:03:38.831899+00:00",
   "sources_checked": 125,
   "newly_discovered": 0,
   "errors": [
@@ -15,15 +15,15 @@
     "Espaço Mira: HTTPSConnectionPool(host='www.miraonline.org', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.miraonline.",
     "MIRA FORUM: HTTPSConnectionPool(host='www.miraonline.org', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.miraonline.",
     "Museu de Viseu / Grão Vasco: HTTPSConnectionPool(host='www.museugraovasco.gov.pt', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE",
-    "Museu Nacional Machado de Castro: HTTPSConnectionPool(host='www.museumachadocastro.gov.pt', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_W",
     "Centro de Artes Visuais: HTTPSConnectionPool(host='www.centrodeartesvisuais.pt', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.ce",
     "Convento São Francisco: HTTPSConnectionPool(host='www.conventosaofrancisco.pt', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.co",
+    "Museu Nacional Machado de Castro: HTTPSConnectionPool(host='www.museumachadocastro.gov.pt', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_W",
     "Museu da Ciência da Universidade de Coimbra: HTTPSConnectionPool(host='www.museudaciencia.org', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICAT",
-    "Museu José Malhoa: HTTPSConnectionPool(host='www.museujosemalhoa.gov.pt', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.mus",
     "Museu da Cerâmica: HTTPSConnectionPool(host='www.museudaceramica.gov.pt', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.mus",
+    "Museu José Malhoa: HTTPSConnectionPool(host='www.museujosemalhoa.gov.pt', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.mus",
     "Museu de Santarém: HTTPSConnectionPool(host='www.cm-santarem.pt', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.cm-santarem",
-    "Centro de Arte Manuel de Brito: HTTPSConnectionPool(host='www.oeiras.pt', port=443): Max retries exceeded with url: / (Caused by NewConnectionError(\"HTTPSConnection(host='www.oeiras.pt', port=",
-    "Museu de Oeiras: 513 Server Error:  for url: https://www.oeiras.pt/",
+    "Museu de Oeiras: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",
+    "Centro de Arte Manuel de Brito: 513 Server Error:  for url: https://www.oeiras.pt/",
     "Museu de Évora: HTTPSConnectionPool(host='www.museudevora.gov.pt', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.museude",
     "Centro de Arte e Cultura FEA: HTTPSConnectionPool(host='www.fundacaoeugeniodealmeida.pt', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, \"[SSL: C",
     "Fundação Eugénio de Almeida: HTTPSConnectionPool(host='www.fundacaoeugeniodealmeida.pt', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, \"[SSL: C",
@@ -32,8 +32,8 @@
     "MUDAS Museu de Arte Contemporânea: HTTPSConnectionPool(host='www.mudas.pt', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.mudas.pt', port=4",
     "Museu Carlos Machado: 403 Client Error: Forbidden for url: https://museucarlosmachado.azores.gov.pt/",
     "Museu de Angra do Heroísmo: HTTPSConnectionPool(host='museu-angra.azores.gov.pt', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='museu-an",
-    "Museu da Horta: 403 Client Error: Forbidden for url: https://museu-horta.azores.gov.pt/",
     "Arquipélago Centro de Artes Contemporâneas: 403 Client Error: Forbidden for url: https://arquipelagocentrodeartes.azores.gov.pt/",
+    "Museu da Horta: 403 Client Error: Forbidden for url: https://museu-horta.azores.gov.pt/",
     "Museu da Quinta das Cruzes: HTTPSConnectionPool(host='mqc.madeira.gov.pt', port=443): Read timed out. (read timeout=7)"
   ],
   "events": [
@@ -81,7 +81,7 @@
       "title": "'Astutas: Uma exposição imersiva sobre as salinas do século XXI”",
       "city": "Aveiro",
       "category": "Art",
-      "venue": "Museu de Santa Joana",
+      "venue": "Museu de Aveiro",
       "start": "2026-10-17",
       "end": "2026-12-11",
       "url": "https://www.cm-aveiro.pt/visitantes/agenda-aveiro/evento/astutas-uma-exposicao-imersiva-sobre-as-salinas-do-seculo-xxi",
@@ -124,25 +124,6 @@
       "end": "2027-02-28",
       "url": "https://www.ccb.pt/evento/exposicao-angela-ferreira/2026-11-14/",
       "image": "https://www.ccb.pt/wp-content/uploads/2025/11/AngelaFerreira.HereIStand1_MACCCB2026creditoTiagoCasanova.jpg"
-    },
-    {
-      "title": "Ângela Ferreira",
-      "city": "Lisboa",
-      "category": "Photography",
-      "venue": "Centro Cultural de Belém",
-      "start": "2026-11-13",
-      "end": "2026-11-13",
-      "url": "https://www.ccb.pt/evento/exposicao-angela-ferreira/2026-11-13/"
-    },
-    {
-      "title": "Abria a Exposição Carla Filipe - The Return of the Real",
-      "city": "Vila Franca de Xira",
-      "category": "Art",
-      "venue": "Museu do Neo-Realismo",
-      "start": "2026-11-13",
-      "end": "2026-11-13",
-      "url": "https://www.museudoneorealismo.pt/evento-719/abria-a-exposicao-carla-filipe-the-return-of-the-real",
-      "image": "https://www.museudoneorealismo.pt/cmvfxira/uploads/event/image/16138/exposicao_carla_filipe___fotos_ggirp__12__1_2500_2500.jpg"
     },
     {
       "title": "Francisco Tropa  ASSEMBLAGE",
@@ -188,7 +169,7 @@
       "title": "Exposição 'Raízes de Mulher – Sementes de Futuro'",
       "city": "Aveiro",
       "category": "Art",
-      "venue": "Museu de Santa Joana",
+      "venue": "Museu de Aveiro",
       "start": "2026-11-17",
       "end": "2026-12-31",
       "url": "https://www.cm-aveiro.pt/visitantes/agenda-aveiro/evento/exposicao-raizes-de-mulher-sementes-de-futuro",
