@@ -1,304 +1,209 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
-"""
-Galerie Paris–Lisboa
-Agenda LX Event Collector
-
-Collecte les événements artistiques d'Agenda LX :
-- Titre
-- Dates
-- Lieu
-- Image
-- URL officielle
-
-Résultat :
-data/generators/agendalx.json
-"""
+"""Collecte Agenda LX via son API publique et publie data/generators/agendalx.json."""
 
 import json
 import re
 import time
 from datetime import datetime, timezone
+from html import unescape
 from pathlib import Path
-from urllib.parse import urljoin, urlparse
+from urllib.error import HTTPError, URLError
+from urllib.parse import urlencode
+from urllib.request import Request, urlopen
 
-import requests
-from bs4 import BeautifulSoup
-
-
-BASE = "https://www.agendalx.pt"
-
-START = (
-    "https://www.agendalx.pt/"
-    "?categories=artes&s=&type=event&archive=artes"
-)
+API = 'https://www.agendalx.pt/wp-json/agendalx/v1/events'
 
 OUTPUT = (
     Path(__file__).resolve().parents[1]
-    / "data"
-    / "generators"
-    / "agendalx.json"
+    / 'data'
+    / 'generators'
+    / 'agendalx.json'
 )
 
-HEADERS = {
-    "User-Agent": "Mozilla/5.0 (compatible; GalerieParisLisboa/1.0)"
-}
+PER_PAGE = 10
+MAX_PAGES = 40
 
 
-def clean(value):
-    return re.sub(r"\s+", " ", str(value or "")).strip()
+def plain(value):
+    if isinstance(value, list):
+        value = ' '.join(str(x) for x in value)
+
+    value = re.sub(r'<[^>]+>', ' ', str(value or ''))
+
+    return re.sub(r'\s+', ' ', unescape(value)).strip()
 
 
-def absolute(url, base=BASE):
-    if not url:
-        return ""
+def fetch(page):
+    query = urlencode({
+        'search': '',
+        'page': page,
+        'per_page': PER_PAGE,
+        'categories': 'artes',
+        'tags': '',
+        'venues': '',
+        'time': '',
+        'type': 'event',
+    })
 
-    return urljoin(base, str(url).strip())
-
-
-def get_page(session, url):
-    response = session.get(
-        url,
-        headers=HEADERS,
-        timeout=25
+    request = Request(
+        f'{API}?{query}',
+        headers={
+            'User-Agent': 'Mozilla/5.0 (compatible; GalerieParisLisboa/1.0)',
+            'Accept': 'application/json',
+        }
     )
 
-    response.raise_for_status()
+    with urlopen(request, timeout=30) as response:
+        payload = json.load(response)
 
-    return BeautifulSoup(response.text, "html.parser")
-
-
-def get_meta(soup, name):
-    tag = soup.find("meta", property=name)
-
-    if not tag:
-        tag = soup.find("meta", attrs={"name": name})
-
-    if tag:
-        return clean(tag.get("content"))
-
-    return ""
-
-
-def get_image(soup, url):
-    image = get_meta(soup, "og:image")
-
-    if image:
-        return absolute(image, url)
-
-    selectors = [
-        "article img",
-        ".event img",
-        ".event-image img",
-        ".featured-image img",
-        "main img"
-    ]
-
-    for selector in selectors:
-        element = soup.select_one(selector)
-
-        if element:
-            image = (
-                element.get("data-src")
-                or element.get("data-lazy-src")
-                or element.get("src")
-            )
-
-            if image and not image.startswith("data:"):
-                return absolute(image, url)
-
-    return ""
-
-
-def extract_dates(soup):
-    dates = []
-
-    for element in soup.select("time[datetime]"):
-        value = element.get("datetime", "")
-
-        match = re.search(
-            r"\d{4}-\d{2}-\d{2}",
-            value
+    if not isinstance(payload, list):
+        raise ValueError(
+            f'Page {page}: réponse inattendue '
+            f'({type(payload).__name__})'
         )
 
-        if match:
-            dates.append(match.group(0))
-
-    for script in soup.select(
-        'script[type="application/ld+json"]'
-    ):
-        try:
-            data = json.loads(script.string or script.get_text())
-        except (ValueError, TypeError):
-            continue
-
-        objects = data if isinstance(data, list) else [data]
-
-        for obj in objects:
-            if not isinstance(obj, dict):
-                continue
-
-            objects_to_check = [obj]
-
-            if isinstance(obj.get("@graph"), list):
-                objects_to_check += obj["@graph"]
-
-            for item in objects_to_check:
-                if not isinstance(item, dict):
-                    continue
-
-                for key in ("startDate", "endDate"):
-                    value = item.get(key, "")
-
-                    match = re.search(
-                        r"\d{4}-\d{2}-\d{2}",
-                        str(value)
-                    )
-
-                    if match:
-                        dates.append(match.group(0))
-
-    if dates:
-        return dates[0], dates[-1]
-
-    return "", ""
+    return payload
 
 
-def extract_venue(soup):
-    selectors = [
-        ".event-location",
-        ".event-venue",
-        ".location",
-        ".venue",
-        '[class*="venue"]',
-        '[class*="location"]'
-    ]
+def normalize(item):
+    venue_data = item.get('venue') or {}
 
-    for selector in selectors:
-        element = soup.select_one(selector)
-
-        if element:
-            value = clean(
-                element.get_text(" ", strip=True)
-            )
-
-            if value:
-                return value[:160]
-
-    return ""
-
-
-def extract_event(session, url):
-    soup = get_page(session, url)
-
-    h1 = soup.find("h1")
-
-    title = (
-        clean(h1.get_text(" ", strip=True))
-        if h1
-        else get_meta(soup, "og:title")
+    venues = (
+        [
+            v.get('name', '')
+            for v in venue_data.values()
+            if isinstance(v, dict)
+        ]
+        if isinstance(venue_data, dict)
+        else []
     )
 
-    image = get_image(soup, url)
+    tags_data = item.get('tags_name_list') or {}
 
-    start, end = extract_dates(soup)
+    tags = (
+        [
+            v.get('name', '')
+            for v in tags_data.values()
+            if isinstance(v, dict)
+        ]
+        if isinstance(tags_data, dict)
+        else []
+    )
 
-    venue = extract_venue(soup)
-
-    if not title:
-        return None
+    title = plain(
+        (item.get('title') or {}).get('rendered', '')
+    )
 
     return {
-        "title": title,
-        "city": "Lisboa",
-        "venue": venue,
-        "category": "Art",
-        "start": start,
-        "end": end or start,
-        "url": url,
-        "image": image,
-        "source": "Agenda LX",
-        "date_verified": bool(start)
+        'id': str(item.get('id', '')),
+        'title': title,
+        'subtitle': plain(item.get('subtitle')),
+        'description': plain(item.get('description')),
+        'venue': ', '.join(venues),
+        'location': ', '.join(venues),
+        'city': 'Lisbon',
+        'region': 'Lisbon',
+        'country': 'Portugal',
+        'start_date': item.get('StartDate') or '',
+        'end_date': item.get('LastDate') or '',
+        'dates': plain(item.get('string_dates')),
+        'hours': plain(item.get('string_times')),
+        'image': item.get('featured_media_large') or '',
+        'url': item.get('link') or '',
+        'source': 'Agenda LX',
+        'category': 'Art',
+        'discipline': 'Art',
+        'tags': tags,
+        'price': item.get('price_cat') or '',
     }
 
 
-def discover_events(soup):
-    events = []
-
-    for link in soup.select("a[href]"):
-        href = link.get("href", "")
-
-        url = absolute(href)
-
-        parsed = urlparse(url)
-
-        if parsed.hostname not in (
-            "agendalx.pt",
-            "www.agendalx.pt"
-        ):
-            continue
-
-        if "/events/event/" not in parsed.path:
-            continue
-
-        url = url.split("#")[0]
-
-        if url not in events:
-            events.append(url)
-
-    return events
-
-
 def main():
-    session = requests.Session()
+    collected = {}
 
-    events = {}
-    errors = []
+    print(
+        'Starting Agenda LX API collection',
+        flush=True
+    )
 
-    print("Starting Agenda LX collection")
+    for page in range(1, MAX_PAGES + 1):
+        try:
+            batch = fetch(page)
 
-    try:
-        soup = get_page(session, START)
+        except (
+            HTTPError,
+            URLError,
+            TimeoutError,
+            ValueError
+        ) as exc:
 
-        links = discover_events(soup)
+            print(
+                f'Page {page}: {exc}',
+                flush=True
+            )
 
-        print("Event links found:", len(links))
+            if not collected:
+                raise RuntimeError(
+                    'Aucune donnée récupérée : '
+                    'ancien JSON conservé'
+                ) from exc
 
-        for index, url in enumerate(links, start=1):
-            try:
-                event = extract_event(session, url)
+            print(
+                'Arrêt pagination, conservation des '
+                'événements déjà récupérés',
+                flush=True
+            )
 
-                if event and event["title"]:
-                    events[url] = event
+            break
 
-                    print(
-                        index,
-                        event["title"],
-                        "image:",
-                        bool(event["image"]),
-                        "date:",
-                        bool(event["start"])
-                    )
+        print(
+            f'Page {page}: {len(batch)} events',
+            flush=True
+        )
 
-            except Exception as error:
-                errors.append(
-                    f"{url}: {str(error)[:150]}"
-                )
+        if not batch:
+            break
 
-            time.sleep(0.2)
+        for item in batch:
+            if not isinstance(item, dict):
+                continue
 
-    except Exception as error:
-        errors.append(str(error))
+            event = normalize(item)
+
+            if (
+                event['id']
+                and event['title']
+                and event['url']
+            ):
+                collected[event['id']] = event
+
+        if len(batch) < PER_PAGE:
+            break
+
+        time.sleep(0.2)
+
+    if not collected:
+        raise RuntimeError(
+            '0 événement : refus de remplacer '
+            'le JSON existant'
+        )
+
+    events = sorted(
+        collected.values(),
+        key=lambda x: (
+            x['end_date'],
+            x['title']
+        )
+    )
 
     payload = {
-        "updated_at": datetime.now(
+        'updated_at': datetime.now(
             timezone.utc
         ).isoformat(),
-        "source": START,
-        "total": len(events),
-        "events": list(events.values()),
-        "errors": errors[:30]
+        'source': API,
+        'total': len(events),
+        'events': events,
+        'errors': [],
     }
 
     OUTPUT.parent.mkdir(
@@ -306,39 +211,25 @@ def main():
         exist_ok=True
     )
 
-    # Conserver les anciennes données si
-    # une collecte temporaire échoue.
-    if OUTPUT.exists() and not events:
-        try:
-            previous = json.loads(
-                OUTPUT.read_text(encoding="utf-8")
-            )
+    tmp = OUTPUT.with_suffix('.json.tmp')
 
-            if previous.get("events"):
-                print(
-                    "No new events. "
-                    "Keeping previous data."
-                )
-                return
-
-        except (OSError, ValueError):
-            pass
-
-    OUTPUT.write_text(
+    tmp.write_text(
         json.dumps(
             payload,
             ensure_ascii=False,
             indent=2
-        ) + "\n",
-        encoding="utf-8"
+        ) + '\n',
+        encoding='utf-8'
     )
+
+    tmp.replace(OUTPUT)
 
     print(
-        "Saved",
-        len(events),
-        "Agenda LX events"
+        f'Saved {len(events)} Agenda LX '
+        f'events to {OUTPUT}',
+        flush=True
     )
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
