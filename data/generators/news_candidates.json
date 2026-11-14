@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-14T00:06:51.788263+00:00",
+  "updated_at": "2026-11-14T08:45:29.833288+00:00",
   "candidates": [
     {
       "title": "Cancioneiro de Elvas",
@@ -36,6 +36,15 @@
       "official_url": "https://www.ccb.pt/evento/exposicao-angela-ferreira/2026-11-14/",
       "verified": false,
       "discovered_from": "https://www.ccb.pt/evento/exposicao-angela-ferreira"
+    },
+    {
+      "title": "Save the Last Dance for Me",
+      "city": "Lisboa",
+      "venue": "CCB",
+      "date": "2026-11-15",
+      "official_url": "https://www.ccb.pt/evento/save-the-last-dance-for-me/2026-11-15/",
+      "verified": false,
+      "discovered_from": "https://www.ccb.pt/evento/save-the-last-dance-for-me/2026-11-15/"
     },
     {
       "title": "Sara Sadik. Khtobtogone",
