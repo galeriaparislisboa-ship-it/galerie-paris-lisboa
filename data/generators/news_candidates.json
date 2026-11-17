@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-16T10:13:30.626248+00:00",
+  "updated_at": "2026-11-17T08:53:57.115429+00:00",
   "candidates": [
     {
       "title": "Cancioneiro de Elvas",
@@ -65,6 +65,33 @@
       "discovered_from": "https://www.serralves.pt/agenda-serralves/"
     },
     {
+      "title": "Idio Chichava + Salavisa European Dance Award Ceremony",
+      "city": "Lisboa",
+      "venue": "CAM Gulbenkian",
+      "date": "2026-11-17",
+      "official_url": "https://gulbenkian.pt/cam/en/agenda/idio-chichava-salavisa-european-dance-award-ceremony/",
+      "verified": false,
+      "discovered_from": "https://gulbenkian.pt/cam/en/agenda/idio-chichava-salavisa-european-dance-award-ceremony/"
+    },
+    {
+      "title": "Ângela Ferreira",
+      "city": "Lisboa",
+      "venue": "CCB",
+      "date": "2026-11-17",
+      "official_url": "https://www.ccb.pt/evento/exposicao-angela-ferreira/2026-11-17/",
+      "verified": false,
+      "discovered_from": "https://www.ccb.pt/evento/exposicao-angela-ferreira"
+    },
+    {
+      "title": "Este Mundo",
+      "city": "Lisboa",
+      "venue": "CCB",
+      "date": "2026-11-20",
+      "official_url": "https://www.ccb.pt/evento/este-mundo/2026-11-20/",
+      "verified": false,
+      "discovered_from": "https://www.ccb.pt/evento/este-mundo/2026-11-20/"
+    },
+    {
       "title": "A Coleção Imaginária",
       "city": "Lisboa",
       "venue": "Gulbenkian",
@@ -72,6 +99,15 @@
       "official_url": "https://gulbenkian.pt/agenda/a-colecao-imaginaria/",
       "verified": false,
       "discovered_from": "https://gulbenkian.pt/agenda/a-colecao-imaginaria/"
+    },
+    {
+      "title": "Curso Uma Viagem Atlântica através da Arte Moderna",
+      "city": "Lisboa",
+      "venue": "CCB",
+      "date": "2026-11-21",
+      "official_url": "https://www.ccb.pt/evento/curso-uma-viagem-atlantica-atraves-da-arte-moderna/2026-11-21/",
+      "verified": false,
+      "discovered_from": "https://www.ccb.pt/evento/curso-uma-viagem-atlantica-atraves-da-arte-moderna"
     },
     {
       "title": "<p>Anri Sala</p>",
@@ -326,6 +362,15 @@
       "discovered_from": "https://www.maat.pt/en/event/venus-valentino-garavani-through-eyes-joana-vasconcelos"
     },
     {
+      "title": "The Democracy Library",
+      "city": "Lisboa",
+      "venue": "CAM Gulbenkian",
+      "date": "2027-02-28",
+      "official_url": "https://gulbenkian.pt/cam/en/agenda/the-democracy-library/",
+      "verified": false,
+      "discovered_from": "https://gulbenkian.pt/cam/en/agenda/the-democracy-library/"
+    },
+    {
       "title": "<p>Afinidades eletivas: Joan MirÃ³ e a arte contemporÃ¢nea na ColeÃ§Ã£o do Museu de Serralves</p>",
       "city": "Porto",
       "venue": "Serralves",
@@ -333,6 +378,15 @@
       "official_url": "https://www.serralves.pt/agenda-serralves/",
       "verified": false,
       "discovered_from": "https://www.serralves.pt/agenda-serralves/"
+    },
+    {
+      "title": "ArteLab",
+      "city": "Lisboa",
+      "venue": "Gulbenkian",
+      "date": "2027-03-07",
+      "official_url": "https://gulbenkian.pt/agenda/artlab/",
+      "verified": false,
+      "discovered_from": "https://gulbenkian.pt/agenda/artlab/"
     },
     {
       "title": "Elective Affinities: Joan MirÃ³ and Contemporary Art from the Collection of the Museu Serralves",
