@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-17T08:53:57.115429+00:00",
+  "updated_at": "2026-11-18T08:57:21.352446+00:00",
   "candidates": [
     {
       "title": "Cancioneiro de Elvas",
@@ -79,6 +79,15 @@
       "venue": "CCB",
       "date": "2026-11-17",
       "official_url": "https://www.ccb.pt/evento/exposicao-angela-ferreira/2026-11-17/",
+      "verified": false,
+      "discovered_from": "https://www.ccb.pt/evento/exposicao-angela-ferreira"
+    },
+    {
+      "title": "Ângela Ferreira",
+      "city": "Lisboa",
+      "venue": "CCB",
+      "date": "2026-11-18",
+      "official_url": "https://www.ccb.pt/evento/exposicao-angela-ferreira/2026-11-18/",
       "verified": false,
       "discovered_from": "https://www.ccb.pt/evento/exposicao-angela-ferreira"
     },
@@ -402,6 +411,15 @@
       "city": "Porto",
       "venue": "Serralves",
       "date": "2027-03-31",
+      "official_url": "https://www.serralves.pt/agenda-serralves/",
+      "verified": false,
+      "discovered_from": "https://www.serralves.pt/agenda-serralves/"
+    },
+    {
+      "title": "Laura Palma: Where the Flowers Bloom",
+      "city": "Porto",
+      "venue": "Serralves",
+      "date": "2027-05-16",
       "official_url": "https://www.serralves.pt/agenda-serralves/",
       "verified": false,
       "discovered_from": "https://www.serralves.pt/agenda-serralves/"

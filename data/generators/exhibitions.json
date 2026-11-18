@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-11-17T08:50:27.709589+00:00",
+  "updated_at": "2026-11-18T08:53:49.342044+00:00",
   "sources_checked": 125,
-  "newly_discovered": 1,
+  "newly_discovered": 3,
   "errors": [
     "MUDE: 403 Client Error: Forbidden for url: https://mude.pt/",
     "Museu Nacional de Arte Antiga: HTTPSConnectionPool(host='www.museudearteantiga.pt', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, \"[SSL: CERTIFIC",
@@ -22,11 +22,11 @@
     "Museu da Cerâmica: HTTPSConnectionPool(host='www.museudaceramica.gov.pt', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.mus",
     "Museu de Santarém: HTTPSConnectionPool(host='www.cm-santarem.pt', port=443): Max retries exceeded with url: / (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.cm-santarem",
     "Museu de Oeiras: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))",
+    "Centro de Arte Manuel de Brito: 513 Server Error:  for url: https://www.oeiras.pt/",
     "Museu de Évora: HTTPSConnectionPool(host='www.museudevora.gov.pt', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.museude",
     "Fundação Eugénio de Almeida: HTTPSConnectionPool(host='www.fundacaoeugeniodealmeida.pt', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, \"[SSL: C",
     "Centro de Arte e Cultura FEA: HTTPSConnectionPool(host='www.fundacaoeugeniodealmeida.pt', port=443): Max retries exceeded with url: / (Caused by SSLError(SSLCertVerificationError(1, \"[SSL: C",
-    "Centro de Arte Manuel de Brito: HTTPSConnectionPool(host='www.oeiras.pt', port=443): Read timed out. (read timeout=4)",
-    "Museu Municipal de Tavira: 403 Client Error: Forbidden for url: https://museumunicipaldetavira.cm-tavira.pt/",
+    "Museu Municipal de Tavira: 500 Server Error: Proxy Error for url: https://museumunicipaldetavira.cm-tavira.pt/",
     "Museu de Arte Contemporânea da Madeira: HTTPSConnectionPool(host='www.mudas.pt', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.mudas.pt', port=4",
     "MUDAS Museu de Arte Contemporânea: HTTPSConnectionPool(host='www.mudas.pt', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='www.mudas.pt', port=4",
     "Museu Carlos Machado: 403 Client Error: Forbidden for url: https://museucarlosmachado.azores.gov.pt/",
@@ -36,6 +36,15 @@
     "Museu de Arte Sacra do Funchal: HTTPSConnectionPool(host='www.museuartesacrafunchal.org', port=443): Read timed out. (read timeout=7)"
   ],
   "events": [
+    {
+      "title": "Exposição de Longa Duração",
+      "city": "Porto",
+      "category": "Art",
+      "venue": "Museu Nacional Soares dos Reis",
+      "start": "2023-04-13",
+      "end": "2030-12-31",
+      "url": "https://museusoaresdosreis.pt/agenda/exposicao-de-longa-duracao"
+    },
     {
       "title": "Exposições Temporárias",
       "city": "Alcobaça",
@@ -135,6 +144,16 @@
       "image": "https://www.ccb.pt/wp-content/uploads/2025/11/AngelaFerreira.HereIStand1_MACCCB2026creditoTiagoCasanova.jpg"
     },
     {
+      "title": "Ângela Ferreira",
+      "city": "Lisboa",
+      "category": "Architecture",
+      "venue": "Centro Cultural de Belém",
+      "start": "2026-10-24",
+      "end": "2027-02-28",
+      "url": "https://www.ccb.pt/evento/exposicao-angela-ferreira/2026-11-18/",
+      "image": "https://www.ccb.pt/wp-content/uploads/2025/11/AngelaFerreira.HereIStand1_MACCCB2026creditoTiagoCasanova.jpg"
+    },
+    {
       "title": "Francisco Tropa  ASSEMBLAGE",
       "city": "Porto",
       "category": "Art",
@@ -183,6 +202,16 @@
       "end": "2026-12-31",
       "url": "https://www.cm-aveiro.pt/visitantes/agenda-aveiro/evento/exposicao-raizes-de-mulher-sementes-de-futuro",
       "image": "https://www.cm-aveiro.pt/cmaveiro/uploads/site_zone/seo_default_image/1/logosite_identidadecma2026_horizontal.jpg"
+    },
+    {
+      "title": "Abria a Exposição ALFREDO CUNHA • PHOTOGRAPHO",
+      "city": "Vila Franca de Xira",
+      "category": "Art",
+      "venue": "Museu do Neo-Realismo",
+      "start": "2026-11-18",
+      "end": "2026-11-18",
+      "url": "https://www.museudoneorealismo.pt/evento-719/abria-a-exposicao-alfredo-cunha-photographo",
+      "image": "https://www.museudoneorealismo.pt/cmvfxira/uploads/event/image/16937/bannermnr_1280x848px_f_1_2500_2500.jpg"
     }
   ]
 }
