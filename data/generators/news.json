@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-11-18T08:58:10.396248+00:00",
+  "updated_at": "2026-11-19T08:59:18.045263+00:00",
   "news": [
     {
       "title": "Ângela Ferreira",
       "city": "Lisboa",
       "venue": "CCB",
-      "date": "2026-11-18",
-      "url": "https://www.ccb.pt/evento/exposicao-angela-ferreira/2026-11-18/"
+      "date": "2026-11-19",
+      "url": "https://www.ccb.pt/evento/exposicao-angela-ferreira/2026-11-19/"
     },
     {
       "title": "Este Mundo",
@@ -21,6 +21,13 @@
       "venue": "Gulbenkian",
       "date": "2026-11-21",
       "url": "https://gulbenkian.pt/agenda/a-colecao-imaginaria/"
+    },
+    {
+      "title": "Ch’ttahh",
+      "city": "Lisboa",
+      "venue": "CCB",
+      "date": "2026-11-21",
+      "url": "https://www.ccb.pt/evento/chttahh/2026-11-21/"
     },
     {
       "title": "Curso Uma Viagem Atlântica através da Arte Moderna",
@@ -128,6 +135,13 @@
       "url": "https://www.maat.pt/en/event/pedro-cabrita-reis-without-sorrow-heart"
     },
     {
+      "title": "Praga in the museum: guided tour-performance | MAAT",
+      "city": "Lisboa",
+      "venue": "MAAT",
+      "date": "2027-02-15",
+      "url": "https://www.maat.pt/en/event/praga-museum-guided-tour-performance"
+    },
+    {
       "title": "A Exposição de um Sonho",
       "city": "Lisboa",
       "venue": "Gulbenkian",
@@ -187,14 +201,14 @@
       "title": "Agenda | MAAT",
       "city": "Lisboa",
       "venue": "MAAT",
-      "date": "2027-05-19",
+      "date": "2027-05-26",
       "url": "https://www.maat.pt/en/agenda"
     },
     {
       "title": "MAAT Youth Collective 2026–2027 | MAAT",
       "city": "Lisboa",
       "venue": "MAAT",
-      "date": "2027-05-19",
+      "date": "2027-05-26",
       "url": "https://www.maat.pt/en/programme/maat-youth-collective-2026-2027"
     },
     {

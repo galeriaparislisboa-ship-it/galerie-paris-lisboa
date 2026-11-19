@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-18T08:57:21.352446+00:00",
+  "updated_at": "2026-11-19T08:58:33.580989+00:00",
   "candidates": [
     {
       "title": "Cancioneiro de Elvas",
@@ -92,6 +92,15 @@
       "discovered_from": "https://www.ccb.pt/evento/exposicao-angela-ferreira"
     },
     {
+      "title": "Ângela Ferreira",
+      "city": "Lisboa",
+      "venue": "CCB",
+      "date": "2026-11-19",
+      "official_url": "https://www.ccb.pt/evento/exposicao-angela-ferreira/2026-11-19/",
+      "verified": false,
+      "discovered_from": "https://www.ccb.pt/evento/exposicao-angela-ferreira"
+    },
+    {
       "title": "Este Mundo",
       "city": "Lisboa",
       "venue": "CCB",
@@ -108,6 +117,15 @@
       "official_url": "https://gulbenkian.pt/agenda/a-colecao-imaginaria/",
       "verified": false,
       "discovered_from": "https://gulbenkian.pt/agenda/a-colecao-imaginaria/"
+    },
+    {
+      "title": "Ch’ttahh",
+      "city": "Lisboa",
+      "venue": "CCB",
+      "date": "2026-11-21",
+      "official_url": "https://www.ccb.pt/evento/chttahh/2026-11-21/",
+      "verified": false,
+      "discovered_from": "https://www.ccb.pt/evento/chttahh/2026-11-21/"
     },
     {
       "title": "Curso Uma Viagem Atlântica através da Arte Moderna",
@@ -326,6 +344,15 @@
       "discovered_from": "https://www.maat.pt/en/event/pedro-cabrita-reis-without-sorrow-heart"
     },
     {
+      "title": "Praga in the museum: guided tour-performance | MAAT",
+      "city": "Lisboa",
+      "venue": "MAAT",
+      "date": "2027-02-15",
+      "official_url": "https://www.maat.pt/en/event/praga-museum-guided-tour-performance",
+      "verified": false,
+      "discovered_from": "https://www.maat.pt/en/event/praga-museum-guided-tour-performance"
+    },
+    {
       "title": "A Exposição de um Sonho",
       "city": "Lisboa",
       "venue": "Gulbenkian",
@@ -438,6 +465,24 @@
       "city": "Lisboa",
       "venue": "MAAT",
       "date": "2027-05-19",
+      "official_url": "https://www.maat.pt/en/programme/maat-youth-collective-2026-2027",
+      "verified": false,
+      "discovered_from": "https://www.maat.pt/en/programme/maat-youth-collective-2026-2027"
+    },
+    {
+      "title": "Agenda | MAAT",
+      "city": "Lisboa",
+      "venue": "MAAT",
+      "date": "2027-05-26",
+      "official_url": "https://www.maat.pt/en/agenda",
+      "verified": false,
+      "discovered_from": "https://www.maat.pt/en/agenda"
+    },
+    {
+      "title": "MAAT Youth Collective 2026–2027 | MAAT",
+      "city": "Lisboa",
+      "venue": "MAAT",
+      "date": "2027-05-26",
       "official_url": "https://www.maat.pt/en/programme/maat-youth-collective-2026-2027",
       "verified": false,
       "discovered_from": "https://www.maat.pt/en/programme/maat-youth-collective-2026-2027"
