@@ -1,75 +1,12 @@
 {
-  "updated_at": "2026-11-19T08:59:18.045263+00:00",
+  "updated_at": "2026-11-20T08:57:47.636090+00:00",
   "news": [
-    {
-      "title": "Ângela Ferreira",
-      "city": "Lisboa",
-      "venue": "CCB",
-      "date": "2026-11-19",
-      "url": "https://www.ccb.pt/evento/exposicao-angela-ferreira/2026-11-19/"
-    },
-    {
-      "title": "Este Mundo",
-      "city": "Lisboa",
-      "venue": "CCB",
-      "date": "2026-11-20",
-      "url": "https://www.ccb.pt/evento/este-mundo/2026-11-20/"
-    },
-    {
-      "title": "A Coleção Imaginária",
-      "city": "Lisboa",
-      "venue": "Gulbenkian",
-      "date": "2026-11-21",
-      "url": "https://gulbenkian.pt/agenda/a-colecao-imaginaria/"
-    },
-    {
-      "title": "Ch’ttahh",
-      "city": "Lisboa",
-      "venue": "CCB",
-      "date": "2026-11-21",
-      "url": "https://www.ccb.pt/evento/chttahh/2026-11-21/"
-    },
-    {
-      "title": "Curso Uma Viagem Atlântica através da Arte Moderna",
-      "city": "Lisboa",
-      "venue": "CCB",
-      "date": "2026-11-21",
-      "url": "https://www.ccb.pt/evento/curso-uma-viagem-atlantica-atraves-da-arte-moderna/2026-11-21/"
-    },
-    {
-      "title": "Natsumi Aoyagi. Sanitary Fables",
-      "city": "Lisboa",
-      "venue": "CAM Gulbenkian",
-      "date": "2026-11-28",
-      "url": "https://gulbenkian.pt/cam/en/agenda/natsumi-aoyagi-sanitary-fables/"
-    },
     {
       "title": "FOCO - ECHOES OF MODERN LIFE",
       "city": "Porto",
       "venue": "Serralves",
       "date": "2026-11-29",
       "url": "https://www.serralves.pt/en/agenda-serralves/"
-    },
-    {
-      "title": "Mercado CCB",
-      "city": "Lisboa",
-      "venue": "CCB",
-      "date": "2026-12-01",
-      "url": "https://www.ccb.pt/evento/mercado-ccb/2026-12-01/"
-    },
-    {
-      "title": "Poetry in the Gallery with Alice Neto de Sousa",
-      "city": "Lisboa",
-      "venue": "CAM Gulbenkian",
-      "date": "2026-12-06",
-      "url": "https://gulbenkian.pt/cam/en/agenda/poetry-in-the-gallery-with-alice-neto-de-sousa/"
-    },
-    {
-      "title": "The best of CAM",
-      "city": "Lisboa",
-      "venue": "CAM Gulbenkian",
-      "date": "2026-12-18",
-      "url": "https://gulbenkian.pt/cam/en/agenda/the-best-of-cam/"
     },
     {
       "title": "THE CENTURY OF GEHRY",
@@ -79,39 +16,11 @@
       "url": "https://www.serralves.pt/en/agenda-serralves/"
     },
     {
-      "title": "Rosana Antolí. An Aria for the Mallard",
-      "city": "Lisboa",
-      "venue": "CAM Gulbenkian",
-      "date": "2027-01-11",
-      "url": "https://gulbenkian.pt/cam/en/agenda/rosana-antoli-an-aria-for-the-mallard/"
-    },
-    {
       "title": "HIDDEN SYMMETRIES IN GLASS WALLS",
       "city": "Porto",
       "venue": "Serralves",
       "date": "2027-01-31",
       "url": "https://www.serralves.pt/en/agenda-serralves/"
-    },
-    {
-      "title": "Espólio Helena Almeida",
-      "city": "Lisboa",
-      "venue": "Gulbenkian",
-      "date": "2027-02-02",
-      "url": "https://gulbenkian.pt/agenda/espolio-helena-almeida/"
-    },
-    {
-      "title": "Painting Is Easy. Do It Yourself!",
-      "city": "Lisboa",
-      "venue": "CAM Gulbenkian",
-      "date": "2027-02-08",
-      "url": "https://gulbenkian.pt/cam/en/agenda/painting-is-easy-do-it-yourself/"
-    },
-    {
-      "title": "Pintar É Fácil. Faça Você Mesmo!",
-      "city": "Lisboa",
-      "venue": "Gulbenkian",
-      "date": "2027-02-08",
-      "url": "https://gulbenkian.pt/agenda/pintar-e-facil-faca-voce-mesmo/"
     },
     {
       "title": "Conversations in Motion: with João Pinharanda and João Norton SJ | MAAT",
@@ -142,13 +51,6 @@
       "url": "https://www.maat.pt/en/event/praga-museum-guided-tour-performance"
     },
     {
-      "title": "A Exposição de um Sonho",
-      "city": "Lisboa",
-      "venue": "Gulbenkian",
-      "date": "2027-02-22",
-      "url": "https://gulbenkian.pt/agenda/exposicao-de-um-sonho/"
-    },
-    {
       "title": "Fringe Embroidery Workshop | MAAT",
       "city": "Lisboa",
       "venue": "MAAT",
@@ -177,20 +79,6 @@
       "url": "https://www.maat.pt/en/event/venus-valentino-garavani-through-eyes-joana-vasconcelos"
     },
     {
-      "title": "The Democracy Library",
-      "city": "Lisboa",
-      "venue": "CAM Gulbenkian",
-      "date": "2027-02-28",
-      "url": "https://gulbenkian.pt/cam/en/agenda/the-democracy-library/"
-    },
-    {
-      "title": "ArteLab",
-      "city": "Lisboa",
-      "venue": "Gulbenkian",
-      "date": "2027-03-07",
-      "url": "https://gulbenkian.pt/agenda/artlab/"
-    },
-    {
       "title": "Elective Affinities: Joan MirÃ³ and Contemporary Art from the Collection of the Museu Serralves",
       "city": "Porto",
       "venue": "Serralves",
@@ -210,20 +98,6 @@
       "venue": "MAAT",
       "date": "2027-05-26",
       "url": "https://www.maat.pt/en/programme/maat-youth-collective-2026-2027"
-    },
-    {
-      "title": "Scheherazade, the Never-ending Collection of CAM",
-      "city": "Lisboa",
-      "venue": "CAM Gulbenkian",
-      "date": "2027-05-31",
-      "url": "https://gulbenkian.pt/cam/en/agenda/scheherazade-the-never-ending-collection-of-cam/"
-    },
-    {
-      "title": "Xerazade, a Coleção Interminável do CAM",
-      "city": "Lisboa",
-      "venue": "Gulbenkian",
-      "date": "2027-05-31",
-      "url": "https://gulbenkian.pt/agenda/xerazade-a-colecao-interminavel-do-cam/"
     },
     {
       "title": "Fernanda Fragateiro. Opening Windows With Stones",
