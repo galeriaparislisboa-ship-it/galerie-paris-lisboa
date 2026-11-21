@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-20T08:55:06.931702+00:00",
+  "updated_at": "2026-11-21T08:46:46.240835+00:00",
   "candidates": [
     {
       "title": "Cancioneiro de Elvas",
@@ -128,6 +128,15 @@
       "discovered_from": "https://www.ccb.pt/evento/chttahh/2026-11-21/"
     },
     {
+      "title": "Coisa-Ponta, by Ana Rita Teodoro and Márcia Lança",
+      "city": "Lisboa",
+      "venue": "CAM Gulbenkian",
+      "date": "2026-11-21",
+      "official_url": "https://gulbenkian.pt/cam/en/agenda/coisa-ponta-by-ana-rita-teodoro-and-marcia-lanca/",
+      "verified": false,
+      "discovered_from": "https://gulbenkian.pt/cam/en/agenda/coisa-ponta-by-ana-rita-teodoro-and-marcia-lanca/"
+    },
+    {
       "title": "Curso Uma Viagem Atlântica através da Arte Moderna",
       "city": "Lisboa",
       "venue": "CCB",
@@ -135,6 +144,24 @@
       "official_url": "https://www.ccb.pt/evento/curso-uma-viagem-atlantica-atraves-da-arte-moderna/2026-11-21/",
       "verified": false,
       "discovered_from": "https://www.ccb.pt/evento/curso-uma-viagem-atlantica-atraves-da-arte-moderna"
+    },
+    {
+      "title": "Ângela Ferreira",
+      "city": "Lisboa",
+      "venue": "CCB",
+      "date": "2026-11-21",
+      "official_url": "https://www.ccb.pt/evento/exposicao-angela-ferreira/2026-11-21/",
+      "verified": false,
+      "discovered_from": "https://www.ccb.pt/evento/exposicao-angela-ferreira"
+    },
+    {
+      "title": "Para Além do Apocalipse: À Procura de Respostas",
+      "city": "Lisboa",
+      "venue": "CCB",
+      "date": "2026-11-24",
+      "official_url": "https://www.ccb.pt/evento/para-alem-do-apocalipse-a-procura-de-respostas/2026-11-24/",
+      "verified": false,
+      "discovered_from": "https://www.ccb.pt/evento/para-alem-do-apocalipse-a-procura-de-respostas/2026-11-24/"
     },
     {
       "title": "<p>Anri Sala</p>",
@@ -432,6 +459,15 @@
       "official_url": "https://www.serralves.pt/en/agenda-serralves/",
       "verified": false,
       "discovered_from": "https://www.serralves.pt/en/agenda-serralves/"
+    },
+    {
+      "title": "Olhar Lento. 20 minutos com arte",
+      "city": "Lisboa",
+      "venue": "Gulbenkian",
+      "date": "2027-03-17",
+      "official_url": "https://gulbenkian.pt/agenda/olhar-lento-20-minutos-com-arte/",
+      "verified": false,
+      "discovered_from": "https://gulbenkian.pt/agenda/olhar-lento-20-minutos-com-arte/"
     },
     {
       "title": "<p>Lee Ufan</p>",
