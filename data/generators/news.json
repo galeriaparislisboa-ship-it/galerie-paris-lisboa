@@ -1,40 +1,19 @@
 {
-  "updated_at": "2026-11-21T08:47:30.165821+00:00",
+  "updated_at": "2026-11-22T08:48:12.695484+00:00",
   "news": [
     {
-      "title": "A Coleção Imaginária",
-      "city": "Lisboa",
-      "venue": "Gulbenkian",
-      "date": "2026-11-21",
-      "url": "https://gulbenkian.pt/agenda/a-colecao-imaginaria/"
-    },
-    {
-      "title": "Ch’ttahh",
+      "title": "Ângela Ferreira",
       "city": "Lisboa",
       "venue": "CCB",
-      "date": "2026-11-21",
-      "url": "https://www.ccb.pt/evento/chttahh/2026-11-21/"
+      "date": "2026-11-22",
+      "url": "https://www.ccb.pt/evento/exposicao-angela-ferreira/2026-11-22/"
     },
     {
       "title": "Coisa-Ponta, by Ana Rita Teodoro and Márcia Lança",
       "city": "Lisboa",
       "venue": "CAM Gulbenkian",
-      "date": "2026-11-21",
+      "date": "2026-11-23",
       "url": "https://gulbenkian.pt/cam/en/agenda/coisa-ponta-by-ana-rita-teodoro-and-marcia-lanca/"
-    },
-    {
-      "title": "Curso Uma Viagem Atlântica através da Arte Moderna",
-      "city": "Lisboa",
-      "venue": "CCB",
-      "date": "2026-11-21",
-      "url": "https://www.ccb.pt/evento/curso-uma-viagem-atlantica-atraves-da-arte-moderna/2026-11-21/"
-    },
-    {
-      "title": "Ângela Ferreira",
-      "city": "Lisboa",
-      "venue": "CCB",
-      "date": "2026-11-21",
-      "url": "https://www.ccb.pt/evento/exposicao-angela-ferreira/2026-11-21/"
     },
     {
       "title": "Para Além do Apocalipse: À Procura de Respostas",
@@ -42,6 +21,13 @@
       "venue": "CCB",
       "date": "2026-11-24",
       "url": "https://www.ccb.pt/evento/para-alem-do-apocalipse-a-procura-de-respostas/2026-11-24/"
+    },
+    {
+      "title": "Curso Uma Viagem Atlântica através da Arte Moderna",
+      "city": "Lisboa",
+      "venue": "CCB",
+      "date": "2026-11-28",
+      "url": "https://www.ccb.pt/evento/curso-uma-viagem-atlantica-atraves-da-arte-moderna/2026-11-28/"
     },
     {
       "title": "Natsumi Aoyagi. Sanitary Fables",
@@ -203,6 +189,13 @@
       "venue": "Serralves",
       "date": "2027-03-07",
       "url": "https://www.serralves.pt/en/agenda-serralves/"
+    },
+    {
+      "title": "A Coleção Imaginária",
+      "city": "Lisboa",
+      "venue": "Gulbenkian",
+      "date": "2027-03-15",
+      "url": "https://gulbenkian.pt/agenda/a-colecao-imaginaria/"
     },
     {
       "title": "Olhar Lento. 20 minutos com arte",
