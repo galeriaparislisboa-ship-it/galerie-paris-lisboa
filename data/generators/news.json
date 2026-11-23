@@ -1,13 +1,6 @@
 {
-  "updated_at": "2026-11-22T08:48:12.695484+00:00",
+  "updated_at": "2026-11-23T09:14:56.187109+00:00",
   "news": [
-    {
-      "title": "Ângela Ferreira",
-      "city": "Lisboa",
-      "venue": "CCB",
-      "date": "2026-11-22",
-      "url": "https://www.ccb.pt/evento/exposicao-angela-ferreira/2026-11-22/"
-    },
     {
       "title": "Coisa-Ponta, by Ana Rita Teodoro and Márcia Lança",
       "city": "Lisboa",
@@ -23,6 +16,13 @@
       "url": "https://www.ccb.pt/evento/para-alem-do-apocalipse-a-procura-de-respostas/2026-11-24/"
     },
     {
+      "title": "Ângela Ferreira",
+      "city": "Lisboa",
+      "venue": "CCB",
+      "date": "2026-11-24",
+      "url": "https://www.ccb.pt/evento/exposicao-angela-ferreira/2026-11-24/"
+    },
+    {
       "title": "Curso Uma Viagem Atlântica através da Arte Moderna",
       "city": "Lisboa",
       "venue": "CCB",
@@ -30,11 +30,25 @@
       "url": "https://www.ccb.pt/evento/curso-uma-viagem-atlantica-atraves-da-arte-moderna/2026-11-28/"
     },
     {
+      "title": "Geometria na Arte Islâmica",
+      "city": "Lisboa",
+      "venue": "Gulbenkian",
+      "date": "2026-11-28",
+      "url": "https://gulbenkian.pt/agenda/geometria-na-arte-islamica/"
+    },
+    {
       "title": "Natsumi Aoyagi. Sanitary Fables",
       "city": "Lisboa",
       "venue": "CAM Gulbenkian",
       "date": "2026-11-28",
       "url": "https://gulbenkian.pt/cam/en/agenda/natsumi-aoyagi-sanitary-fables/"
+    },
+    {
+      "title": "The Snail That Drank the Sea Dry, The Sewer That Is Neither, The Crow That Found a Washhouse",
+      "city": "Lisboa",
+      "venue": "CAM Gulbenkian",
+      "date": "2026-11-28",
+      "url": "https://gulbenkian.pt/cam/en/agenda/the-snail-that-drank-the-sea-dry-the-sewer-that-is-neither-the-crow-that-found-a-washhouse/"
     },
     {
       "title": "FOCO - ECHOES OF MODERN LIFE",

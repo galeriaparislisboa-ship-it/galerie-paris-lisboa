@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-22T08:47:28.142062+00:00",
+  "updated_at": "2026-11-23T09:14:19.559936+00:00",
   "candidates": [
     {
       "title": "Cancioneiro de Elvas",
@@ -182,6 +182,15 @@
       "discovered_from": "https://www.ccb.pt/evento/para-alem-do-apocalipse-a-procura-de-respostas/2026-11-24/"
     },
     {
+      "title": "Ângela Ferreira",
+      "city": "Lisboa",
+      "venue": "CCB",
+      "date": "2026-11-24",
+      "official_url": "https://www.ccb.pt/evento/exposicao-angela-ferreira/2026-11-24/",
+      "verified": false,
+      "discovered_from": "https://www.ccb.pt/evento/exposicao-angela-ferreira"
+    },
+    {
       "title": "<p>Anri Sala</p>",
       "city": "Porto",
       "venue": "Serralves",
@@ -200,6 +209,15 @@
       "discovered_from": "https://www.ccb.pt/evento/curso-uma-viagem-atlantica-atraves-da-arte-moderna"
     },
     {
+      "title": "Geometria na Arte Islâmica",
+      "city": "Lisboa",
+      "venue": "Gulbenkian",
+      "date": "2026-11-28",
+      "official_url": "https://gulbenkian.pt/agenda/geometria-na-arte-islamica/",
+      "verified": false,
+      "discovered_from": "https://gulbenkian.pt/agenda/geometria-na-arte-islamica/"
+    },
+    {
       "title": "Natsumi Aoyagi. Sanitary Fables",
       "city": "Lisboa",
       "venue": "CAM Gulbenkian",
@@ -207,6 +225,15 @@
       "official_url": "https://gulbenkian.pt/cam/en/agenda/natsumi-aoyagi-sanitary-fables/",
       "verified": false,
       "discovered_from": "https://gulbenkian.pt/cam/en/agenda/natsumi-aoyagi-sanitary-fables/"
+    },
+    {
+      "title": "The Snail That Drank the Sea Dry, The Sewer That Is Neither, The Crow That Found a Washhouse",
+      "city": "Lisboa",
+      "venue": "CAM Gulbenkian",
+      "date": "2026-11-28",
+      "official_url": "https://gulbenkian.pt/cam/en/agenda/the-snail-that-drank-the-sea-dry-the-sewer-that-is-neither-the-crow-that-found-a-washhouse/",
+      "verified": false,
+      "discovered_from": "https://gulbenkian.pt/cam/en/agenda/the-snail-that-drank-the-sea-dry-the-sewer-that-is-neither-the-crow-that-found-a-washhouse/"
     },
     {
       "title": "<p>FOCO - ECOS DA VIDA MODERNA</p>",
