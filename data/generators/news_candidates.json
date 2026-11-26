@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-25T09:01:10.417743+00:00",
+  "updated_at": "2026-11-26T08:59:04.621937+00:00",
   "candidates": [
     {
       "title": "Cancioneiro de Elvas",
@@ -196,6 +196,15 @@
       "venue": "CCB",
       "date": "2026-11-25",
       "official_url": "https://www.ccb.pt/evento/exposicao-angela-ferreira/2026-11-25/",
+      "verified": false,
+      "discovered_from": "https://www.ccb.pt/evento/exposicao-angela-ferreira"
+    },
+    {
+      "title": "Ângela Ferreira",
+      "city": "Lisboa",
+      "venue": "CCB",
+      "date": "2026-11-26",
+      "official_url": "https://www.ccb.pt/evento/exposicao-angela-ferreira/2026-11-26/",
       "verified": false,
       "discovered_from": "https://www.ccb.pt/evento/exposicao-angela-ferreira"
     },
