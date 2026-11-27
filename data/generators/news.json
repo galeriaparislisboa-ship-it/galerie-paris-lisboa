@@ -1,13 +1,6 @@
 {
-  "updated_at": "2026-11-26T08:59:54.984851+00:00",
+  "updated_at": "2026-11-27T09:00:10.256087+00:00",
   "news": [
-    {
-      "title": "Ângela Ferreira",
-      "city": "Lisboa",
-      "venue": "CCB",
-      "date": "2026-11-26",
-      "url": "https://www.ccb.pt/evento/exposicao-angela-ferreira/2026-11-26/"
-    },
     {
       "title": "CAM After Hours",
       "city": "Lisboa",
@@ -21,6 +14,13 @@
       "venue": "Gulbenkian",
       "date": "2026-11-27",
       "url": "https://gulbenkian.pt/agenda/cam-fora-de-horas/"
+    },
+    {
+      "title": "Ângela Ferreira",
+      "city": "Lisboa",
+      "venue": "CCB",
+      "date": "2026-11-27",
+      "url": "https://www.ccb.pt/evento/exposicao-angela-ferreira/2026-11-27/"
     },
     {
       "title": "Curso Uma Viagem Atlântica através da Arte Moderna",

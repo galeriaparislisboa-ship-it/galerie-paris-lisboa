@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-26T08:59:04.621937+00:00",
+  "updated_at": "2026-11-27T08:59:24.685625+00:00",
   "candidates": [
     {
       "title": "Cancioneiro de Elvas",
@@ -234,6 +234,15 @@
       "official_url": "https://gulbenkian.pt/agenda/cam-fora-de-horas/",
       "verified": false,
       "discovered_from": "https://gulbenkian.pt/agenda/cam-fora-de-horas/"
+    },
+    {
+      "title": "Ângela Ferreira",
+      "city": "Lisboa",
+      "venue": "CCB",
+      "date": "2026-11-27",
+      "official_url": "https://www.ccb.pt/evento/exposicao-angela-ferreira/2026-11-27/",
+      "verified": false,
+      "discovered_from": "https://www.ccb.pt/evento/exposicao-angela-ferreira"
     },
     {
       "title": "Curso Uma Viagem Atlântica através da Arte Moderna",
