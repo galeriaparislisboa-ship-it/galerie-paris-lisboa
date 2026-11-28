@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-27T08:59:24.685625+00:00",
+  "updated_at": "2026-11-28T08:45:37.786203+00:00",
   "candidates": [
     {
       "title": "Cancioneiro de Elvas",
@@ -353,6 +353,15 @@
       "discovered_from": "https://gulbenkian.pt/cam/en/agenda/the-best-of-cam/"
     },
     {
+      "title": "Christmas Holidays 2026: Weekly Programme | MAAT",
+      "city": "Lisboa",
+      "venue": "MAAT",
+      "date": "2026-12-30",
+      "official_url": "https://www.maat.pt/en/event/christmas-holidays-2026-weekly-programme",
+      "verified": false,
+      "discovered_from": "https://www.maat.pt/en/event/christmas-holidays-2026-weekly-programme"
+    },
+    {
       "title": "<p>ESCULTURAS NO PARQUE</p>",
       "city": "Porto",
       "venue": "Serralves",
@@ -609,6 +618,15 @@
       "city": "Porto",
       "venue": "Serralves",
       "date": "2027-03-31",
+      "official_url": "https://www.serralves.pt/agenda-serralves/",
+      "verified": false,
+      "discovered_from": "https://www.serralves.pt/agenda-serralves/"
+    },
+    {
+      "title": "Anri Sala",
+      "city": "Porto",
+      "venue": "Serralves",
+      "date": "2027-05-02",
       "official_url": "https://www.serralves.pt/agenda-serralves/",
       "verified": false,
       "discovered_from": "https://www.serralves.pt/agenda-serralves/"
